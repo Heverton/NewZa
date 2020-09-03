@@ -1,0 +1,26 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="content1">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>MENU</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item>Menu Item</ion-item>
+        <ion-item>Menu Item</ion-item>
+        <ion-item>Menu Item</ion-item>
+        <ion-item>Menu Item</ion-item>
+        <ion-item>Menu Item</ion-item>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item [routerLink]="abas/avisos" routerDirection="forward">
+              <ion-icon [name]="pages.icon" slot="start"></ion-icon>
+              <span>Menu Item</span>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="content1"></ion-router-outlet>
+</ion-app>

@@ -1,0 +1,7 @@
+{
+  "name": "NewZa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

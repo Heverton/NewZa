@@ -1,0 +1,29 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
+    <!-- Menu de itens -->
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>{{nomeAba}}123</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="avisos" (click)="coletarNome('avisos')">
+      <ion-icon name="triangle"></ion-icon>
+      <ion-label>avisos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="imovel"  (click)="coletarNome('imovel')">
+      <ion-icon name="ellipse"></ion-icon>
+      <ion-label>imovel</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="inquilino" (click)="coletarNome('inquilino')">
+      <ion-icon name="square"></ion-icon>
+      <ion-label>inquilino</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
