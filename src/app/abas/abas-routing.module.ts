@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('../inquilino/inquilino.module').then(m => m.InquilinoModule)
       },
       {
+        path: 'energia',
+        loadChildren: () => import('../energia/energia.module').then(m => m.EnergiaModule)
+      },
+      {
         path: '',
         redirectTo: '/avisos',
         pathMatch: 'full'

@@ -5,5 +5,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  fsdfsd
+  <ion-card *ngFor="let item of itens">
+    <ion-card-header>
+      <ion-card-subtitle>{{item.data}}</ion-card-subtitle>
+      <ion-card-title>{{item.nome}}</ion-card-title>
+      <ion-card-subtitle>{{item.descricao}}</ion-card-subtitle>
+    </ion-card-header>
+    <!-- <ion-card-content>{{item.descricao}}</ion-card-content> -->
+    <!-- <ion-label>{{item.data}}</ion-label> -->
+  </ion-card>
 </ion-content>

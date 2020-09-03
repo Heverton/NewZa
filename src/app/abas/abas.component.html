@@ -1,29 +1,33 @@
 <ion-header [translucent]="true" >
   <ion-toolbar color="primary">
-    <!-- Menu de itens -->
+    <!-- Menu de itens (menucentral) -->
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
-    
-    <ion-title>{{nomeAba}}123</ion-title>
+    <ion-title>{{nomeAba}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="avisos" (click)="coletarNome('avisos')">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>avisos</ion-label>
+      <ion-icon name="nuclear-outline"></ion-icon>
+      <ion-label>Avisos</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="imovel"  (click)="coletarNome('imovel')">
-      <ion-icon name="ellipse"></ion-icon>
-      <ion-label>imovel</ion-label>
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Imovel</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="inquilino" (click)="coletarNome('inquilino')">
-      <ion-icon name="square"></ion-icon>
-      <ion-label>inquilino</ion-label>
+      <ion-icon name="people-circle-outline"></ion-icon>
+      <ion-label>Inquilino</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="energia" (click)="coletarNome('energia')">
+      <ion-icon name="bulb-outline"></ion-icon>
+      <ion-label>Leitura da energia</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

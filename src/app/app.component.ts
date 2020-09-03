@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { MenuItem } from './menuitem';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,19 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  menusitens = new Array<MenuItem>();
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
+
+    this.menusitens.push(new MenuItem('avisos', 'Mural de Avisos', 'abas/avisos', ''));
+    this.menusitens.push(new MenuItem('imovel', 'Manter imóveis', 'abas/imovel', ''));
+    this.menusitens.push(new MenuItem('inquilino', 'Manter inquilino', 'abas/inquilino', ''));
+
     this.initializeApp();
   }
 
@@ -24,4 +32,5 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
 }
