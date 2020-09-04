@@ -20,6 +20,7 @@ export class InquilinoComponent {
   constructor(private formBuilder: FormBuilder) {
     this.inquilinoForm = this.formBuilder.group({
       nome: ['', Validators.required],
+      cpf: ['', Validators.required],
       telefone: ['', Validators.required],
       sexo: ['', Validators.required],
       dtNascimento: [''],

@@ -15,6 +15,11 @@
         </ion-item>
 
         <ion-item>
+          <ion-label>CPF:</ion-label>
+          <ion-input name="nome" required placeholder="Digite o número do CPF." formControlName="cpf" ></ion-input>
+        </ion-item>
+
+        <ion-item>
           <ion-label>Telefone:</ion-label>
           <ion-input name="telefone" placeholder="Digite o telefone ou celular." type="tel"  formControlName="telefone"></ion-input>
         </ion-item>
@@ -29,7 +34,7 @@
 
         <ion-item>
           <ion-label>Data de nascimento:</ion-label>
-          <ion-input name="dtNascimento" placeholder="Digite o nome" type="date" [brmasker]="(00) 00000-0000"  formControlName="dtNascimento"></ion-input>
+          <ion-input name="dtNascimento" placeholder="Digite o nome" type="date" formControlName="dtNascimento"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -47,10 +52,6 @@
         <ion-item>
           <ion-label>O celular possui whasapp?</ion-label>
           <ion-toggle name="isPossuiWhatsapp" color="primary" formControlName="isPossuiWhatsapp"></ion-toggle>
-        </ion-item>
-
-        <ion-item [class.error]="!inquilinoForm.valid">
-          <ion-label>Erro</ion-label>
         </ion-item>
 
         <ion-item>

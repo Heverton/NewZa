@@ -1,6 +1,7 @@
 export class Inquilino {
     id: number;
     nome: string;
+    cpf: string;
     telefone: string;
     sexo: string;
     dtNascimento: string;
