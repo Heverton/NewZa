@@ -1,11 +1,69 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Inquilino
-    </ion-title>
+    <ion-title>Inquilino</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  aasdasd
+
+  <ion-card>
+    <ion-card-header>
+
+      <ion-item>
+        <ion-label>Nome:</ion-label>
+        <ion-input placeholder="Digite o nome." ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefone:</ion-label>
+        <ion-input placeholder="Digite o telefone ou celular." type="tel"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Sexo:</ion-label>
+        <ion-select placeholder="Sexo">
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="feminino">Feminino</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data de nascimento:</ion-label>
+        <ion-input placeholder="Digite o nome" type="date" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Estado Civil:</ion-label>
+        <ion-select placeholder="Estado Civil" >
+          <ion-select-option *ngFor="let estado of estadocivil" value="{{estado.id}}">{{estado.nome}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Possui filhos:</ion-label>
+        <ion-toggle color="primary"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>O celular possui whasapp?</ion-label>
+        <ion-toggle color="primary"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-button color="primary">Salvar</ion-button>
+        <ion-button color="primary">Excluir</ion-button>
+        <ion-button color="primary">Editar</ion-button>
+      </ion-item>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- Lista de inquilinos -->
+  <ion-card *ngFor="let item of itens">
+    <ion-card-header>
+      <ion-card-subtitle>{{item.nome}}</ion-card-subtitle>
+      <ion-card-title>{{item.descricao}}</ion-card-title>
+      <ion-card-subtitle>R$: {{item.valor}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
 </ion-content>
