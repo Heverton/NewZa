@@ -2,7 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { InquilinoComponent } from './inquilino.component';
 import { InquilinoRoutingModule } from './inquilino-routing.module';
 
@@ -14,7 +14,11 @@ import { InquilinoRoutingModule } from './inquilino-routing.module';
     FormsModule,
     RouterModule.forChild([{ path: '', component: InquilinoComponent }]),
     InquilinoRoutingModule,
+    ReactiveFormsModule
   ],
-  declarations: [InquilinoComponent]
+  declarations: [InquilinoComponent],
+  providers: [
+    FormBuilder
+  ]
 })
 export class InquilinoModule {}

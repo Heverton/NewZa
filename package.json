@@ -1,8 +1,8 @@
 {
   "name": "NewZa",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "1.0.0",
+  "author": "Heverton Cruz",
+  "description": "NewZa é um controlador de medidores de energia.",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -52,5 +52,4 @@
     "tslint": "~6.1.0",
     "typescript": "~3.9.5"
   },
-  "description": "An Ionic project"
 }

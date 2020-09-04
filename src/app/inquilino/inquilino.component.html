@@ -8,52 +8,59 @@
 
   <ion-card>
     <ion-card-header>
+      <form [formGroup]="inquilinoForm" (ngSubmit)="manterDados()">
+        <ion-item>
+          <ion-label>Nome:</ion-label>
+          <ion-input name="nome" required placeholder="Digite o nome." formControlName="nome" ></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Nome:</ion-label>
-        <ion-input placeholder="Digite o nome." ></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Telefone:</ion-label>
+          <ion-input name="telefone" placeholder="Digite o telefone ou celular." type="tel"  formControlName="telefone"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Telefone:</ion-label>
-        <ion-input placeholder="Digite o telefone ou celular." type="tel"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Sexo:</ion-label>
+          <ion-select name="sexo" placeholder="Sexo" formControlName="sexo">
+            <ion-select-option value="masculino">Masculino</ion-select-option>
+            <ion-select-option value="feminino">Feminino</ion-select-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Sexo:</ion-label>
-        <ion-select placeholder="Sexo">
-          <ion-select-option value="masculino">Masculino</ion-select-option>
-          <ion-select-option value="feminino">Feminino</ion-select-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label>Data de nascimento:</ion-label>
+          <ion-input name="dtNascimento" placeholder="Digite o nome" type="date" [brmasker]="(00) 00000-0000"  formControlName="dtNascimento"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Data de nascimento:</ion-label>
-        <ion-input placeholder="Digite o nome" type="date" ></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Estado Civil:</ion-label>
+          <ion-select name="estadoCivil" placeholder="Estado Civil" formControlName="estadoCivil" >
+            <ion-select-option *ngFor="let estado of estadocivil" value="{{estado.id}}">{{estado.nome}}</ion-select-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Estado Civil:</ion-label>
-        <ion-select placeholder="Estado Civil" >
-          <ion-select-option *ngFor="let estado of estadocivil" value="{{estado.id}}">{{estado.nome}}</ion-select-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label>Possui filhos:</ion-label>
+          <ion-toggle name="possuiFilhos" color="primary" formControlName="isPossuiFilhos"></ion-toggle>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Possui filhos:</ion-label>
-        <ion-toggle color="primary"></ion-toggle>
-      </ion-item>
+        <ion-item>
+          <ion-label>O celular possui whasapp?</ion-label>
+          <ion-toggle name="isPossuiWhatsapp" color="primary" formControlName="isPossuiWhatsapp"></ion-toggle>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>O celular possui whasapp?</ion-label>
-        <ion-toggle color="primary"></ion-toggle>
-      </ion-item>
+        <ion-item [class.error]="!inquilinoForm.valid">
+          <ion-label>Erro</ion-label>
+        </ion-item>
 
-      <ion-item>
-        <ion-button color="primary">Salvar</ion-button>
-        <ion-button color="primary">Excluir</ion-button>
-        <ion-button color="primary">Editar</ion-button>
-      </ion-item>
+        <ion-item>
+          <ion-button name="salvar" [disabled]="!inquilinoForm.valid" color="primary" type="submit">Salvar</ion-button>
+          <ion-button name="editar" [disabled]="!inquilinoForm.valid" color="primary" type="submit">Editar</ion-button>
+          <ion-button name="excluir" [disabled]="!inquilinoForm.valid" color="primary" type="submit">Excluir</ion-button>
+        </ion-item>
+      
+      </form>
+
     </ion-card-header>
   </ion-card>
 
