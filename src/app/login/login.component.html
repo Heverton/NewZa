@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login/Cadastro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="estaAutenticado" padding>
+    <h3>Você está conectado!</h3>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>E-mail:</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Senha:</ion-label>
+      <ion-input type="password" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button name="salvar" *ngIf="!estaAutenticado" color="primary" (click)="cadastrar()">Cadastrar</ion-button>
+      <ion-button name="salvar" *ngIf="!estaAutenticado" color="secondary" (click)="login()">Login</ion-button>
+      <ion-button name="salvar" *ngIf="estaAutenticado" color="danger" (click)="logout()">Logout</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="googleSignIn()">Sign in with Google</ion-button>
+      <p>{{userData | json}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
