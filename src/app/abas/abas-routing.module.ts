@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AbasComponent } from './abas.component';
-import { AvisosComponent } from '../avisos/avisos.component';
 
 const routes: Routes = [
   {
@@ -23,6 +22,10 @@ const routes: Routes = [
       {
         path: 'energia',
         loadChildren: () => import('../energia/energia.module').then(m => m.EnergiaModule)
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
       },
       {
         path: '',

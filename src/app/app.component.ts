@@ -19,9 +19,10 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
 
-    this.menusitens.push(new MenuItem('avisos', 'Mural de Avisos', 'abas/avisos', ''));
-    this.menusitens.push(new MenuItem('imovel', 'Manter imóveis', 'abas/imovel', ''));
-    this.menusitens.push(new MenuItem('inquilino', 'Manter inquilino', 'abas/inquilino', ''));
+    this.menusitens.push(new MenuItem('login', 'Login', 'sis/abas/login', ''));
+    this.menusitens.push(new MenuItem('avisos', 'Mural de Avisos', 'sis/abas/avisos', ''));
+    this.menusitens.push(new MenuItem('imovel', 'Manter imóveis', 'sis/abas/imovel', ''));
+    this.menusitens.push(new MenuItem('inquilino', 'Manter inquilino', 'sis/abas/inquilino', ''));
 
     this.initializeApp();
   }
