@@ -2,6 +2,8 @@ export class Imovel {
     nome: string;
     descricao: string;
     valor: string;
+    sigla: string;
+    qtdComodos: string;
 
     constructor(nome, descricao, valor){
         this.nome = nome;
