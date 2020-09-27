@@ -8,8 +8,8 @@ const routes: Routes = [
     component: AbasComponent,
     children: [
       {
-        path: 'avisos',
-        loadChildren: () => import('../avisos/avisos.module').then(m => m.AvisosModule)
+        path: 'aviso',
+        loadChildren: () => import('../aviso/aviso.module').then(m => m.AvisoModule)
       },
       {
         path: 'imovel',
@@ -29,14 +29,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/avisos',
+        redirectTo: '/aviso',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/abas/avisos',
+    redirectTo: '/abas/aviso',
     pathMatch: 'full'
   }
 ];

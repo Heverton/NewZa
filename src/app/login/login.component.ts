@@ -39,7 +39,7 @@ export class LoginComponent {
   }
 
   login(): void{
-    this.router.navigate(['sis/abas/avisos']);
+    this.router.navigate(['sis/abas/aviso']);
     // let dados: UserDetails = {
     //   'email': this.email,
     //   'password': this.senha

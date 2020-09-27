@@ -20,7 +20,7 @@ export class AppComponent {
   ) {
 
     this.menusitens.push(new MenuItem('login', 'Login', 'sis/abas/login', ''));
-    this.menusitens.push(new MenuItem('avisos', 'Mural de Avisos', 'sis/abas/avisos', ''));
+    this.menusitens.push(new MenuItem('aviso', 'Mural de Aviso', 'sis/abas/aviso', ''));
     this.menusitens.push(new MenuItem('imovel', 'Manter imóveis', 'sis/abas/imovel', ''));
     this.menusitens.push(new MenuItem('inquilino', 'Manter inquilino', 'sis/abas/inquilino', ''));
 

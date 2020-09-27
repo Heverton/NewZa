@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { AvisosService } from '../shared/api/avisos.service';
+import { AvisoService } from '../shared/api/aviso.service';
 import { Aviso } from './aviso';
 
 @Component({
-  selector: 'app-avisos',
-  templateUrl: 'avisos.component.html',
-  styleUrls: ['avisos.component.scss']
+  selector: 'app-aviso',
+  templateUrl: 'aviso.component.html',
+  styleUrls: ['aviso.component.scss']
 })
 export class AvisoComponent {
 
   itens = new Array<Aviso>();
 
-  constructor(private service: AvisosService) {
+  constructor(private service: AvisoService) {
     this.service.buscar().subscribe(result => {
       console.log('Aqui', result);
     });
