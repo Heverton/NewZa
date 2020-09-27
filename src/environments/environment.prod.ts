@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: TextTrackCue,
+  endpoints: {
+    api: `http://localhost:8080/newza-api`,
+  }
 };

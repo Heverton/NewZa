@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AvisosRoutingModule } from './avisos-routing.module';
 import { AvisosComponent } from './avisos.component';
+import { ApiModule } from '../shared/api.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AvisosComponent } from './avisos.component';
     IonicModule,
     CommonModule,
     FormsModule,
-    AvisosRoutingModule
+    AvisosRoutingModule,
+    ApiModule
   ],
   declarations: [AvisosComponent]
 })

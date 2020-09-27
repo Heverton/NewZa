@@ -1,33 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Inquilino } from 'src/app/inquilino/Inquilino';
+import { GenericService } from './generic.service';
 
 @Injectable()
-export class InquilinoService {
-    private api = 'inquilino/';
-    private header = new HttpHeaders({ 'Content-Type': 'application/json' });
+export class InquilinoService extends GenericService<Inquilino> {
 
-    constructor( private http: HttpClient){
-    }
-
-    public inserir(dados: Object): Observable<Object[]> {
-        const body = JSON.stringify(dados);
-        return this.http.post<Object[]>(`${this.api}`, body, {headers: this.header });
-    }
-
-
-    public editar(dados: Object): Observable<Object[]> {
-        const body = JSON.stringify(dados);
-        return this.http.put<Object[]>(`${this.api}`, body, {headers: this.header });
-    }
-
-    public excluir(dados: Object): Observable<Object[]> {
-        const body = JSON.stringify(dados);
-        return this.http.patch<Object[]>(`${this.api}`, body, {headers: this.header });
-    }
-
-    public buscar(): Observable<Object[]> {
-        return this.http.get<Object[]>(`${this.api}`, {headers: this.header });
+    constructor(protected http: HttpClient, protected service: string){
+        super(http, 'inquilino');
     }
 
 
