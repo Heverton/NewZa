@@ -5,6 +5,6 @@
 export const environment = {
   production: false,
   endpoints: {
-    api: `http://hiroku.com/newza-api`,
+    api: `http://localhost:8080/newza-api`,
   }
 };

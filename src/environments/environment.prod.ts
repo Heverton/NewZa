@@ -1,6 +1,6 @@
 export const environment = {
-  production: TextTrackCue,
+  production: true,
   endpoints: {
-    api: `http://localhost:8080/newza-api`,
+    api: `http://hiroku.com/newza-api`,
   }
 };

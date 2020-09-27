@@ -8,30 +8,29 @@ import { environment } from 'src/environments/environment';
  * https://jasonwhite.xyz/posts/2019/11/16/angular-8-creating-a-generic-crud-service/
  */
 @Injectable()
-export class GenericService<T> {
-    private header = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private api = environment;
+export abstract class GenericService<T> {
+    private _header = new HttpHeaders({ 'Content-Type': 'application/json' });
+    private _api = environment.endpoints.api;
 
-    constructor(protected http: HttpClient, protected service: string){
-    }
+    constructor(protected _http: HttpClient, protected _base: string){ }
 
     public inserir(dados: T): Observable<T[]> {
         const body = JSON.stringify(dados);
-        return this.http.post<T[]>(`${this.api}+${this.service}`, body, {headers: this.header });
+        return this._http.post<T[]>(`${this._api}/${this._base}`, body, {headers: this._header });
     }
 
     public editar(dados: T): Observable<T[]> {
         const body = JSON.stringify(dados);
-        return this.http.put<T[]>(`${this.api}+${this.service}`, body, {headers: this.header });
+        return this._http.put<T[]>(`${this._api}/${this._base}`, body, {headers: this._header });
     }
 
     public excluir(dados: T): Observable<T[]> {
         // TODO verificar
         const body = JSON.stringify(dados);
-        return this.http.patch<T[]>(`${this.api}+${this.service}`, body, {headers: this.header });
+        return this._http.patch<T[]>(`${this._api}/${this._base}`, body, {headers: this._header });
     }
 
     public buscar(): Observable<T[]> {
-        return this.http.get<T[]>(`${this.api}+${this.service}`, {headers: this.header });
+        return this._http.get<T[]>(`${this._api}/${this._base}`, {headers: this._header });
     }
 }

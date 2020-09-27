@@ -2,8 +2,8 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AvisosRoutingModule } from './avisos-routing.module';
-import { AvisosComponent } from './avisos.component';
+import { AvisoRoutingModule } from './aviso-routing.module';
+import { AvisoComponent } from './aviso.component';
 import { ApiModule } from '../shared/api.module';
 
 
@@ -12,9 +12,9 @@ import { ApiModule } from '../shared/api.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    AvisosRoutingModule,
+    AvisoRoutingModule,
     ApiModule
   ],
-  declarations: [AvisosComponent]
+  declarations: [AvisoComponent]
 })
-export class AvisosModule {}
+export class AvisoModule {}
