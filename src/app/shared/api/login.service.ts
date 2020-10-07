@@ -8,5 +8,7 @@ export class LoginService extends GenericService<Login> {
 
     constructor(protected http: HttpClient, protected service: string){
         super(http, 'login');
+        // Login OK
+        // localStorage.setItem('token');
     }
 }

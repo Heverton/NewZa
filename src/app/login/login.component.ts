@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { AuthService } from '../shared/auth/auth.service';
 // import { Auth, UserDetails, User } from "@ionic/cloud-angular";
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent {
 
   // https://medium.com/@edigleyssonsilva/adding-google-sign-in-to-your-ionic-3-4-5-app-8ed81744e8ba
 
-  constructor(private router: Router, private googlePlus: GooglePlus){
+  constructor(private router: Router, private auth: AuthService, private googlePlus: GooglePlus){
     // (public auth: Auth, public user: User) {
     // this.estaAutenticado = this.auth.isAuthenticated();
   }
@@ -39,7 +40,9 @@ export class LoginComponent {
   }
 
   login(): void{
+    this.auth.login('admin', 'admin');
     this.router.navigate(['sis/abas/aviso']);
+
     // let dados: UserDetails = {
     //   'email': this.email,
     //   'password': this.senha

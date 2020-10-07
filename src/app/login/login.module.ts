@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { ApiModule } from '../shared/api.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
     IonicModule,
     CommonModule,
     FormsModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    ApiModule
   ],
   declarations: [LoginComponent],
   providers: [GooglePlus]
