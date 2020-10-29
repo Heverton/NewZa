@@ -1,4 +1,4 @@
-# NewZa
+# newza
 
 Gerenciador de consumo elétrico.
 
