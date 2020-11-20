@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AvisoService } from '../shared/api/aviso.service';
 import { Aviso } from './aviso';
 
@@ -7,18 +7,15 @@ import { Aviso } from './aviso';
   templateUrl: 'aviso.component.html',
   styleUrls: ['aviso.component.scss']
 })
-export class AvisoComponent {
+export class AvisoComponent implements OnInit {
 
-  itens = new Array<Aviso>();
+  itens: Aviso[] = new Array<Aviso>();
 
-  constructor(private service: AvisoService) {
-    this.service.buscarId(1).subscribe(result => {
-      console.log('Aqui', result);
+  constructor(private service: AvisoService) {}
+
+  ngOnInit(): void {
+    this.service.buscarAll().subscribe(result => {
+      this.itens = result;
     });
-    this.itens.push(new Aviso('Manutenção do portão', 'Foi realizado a manutenção do portão e gerou um gasto de R$ X.', '03-09-2020'));
-    this.itens.push(new Aviso('Manutenção do portão', 'Foi realizado a manutenção do portão e gerou um gasto de R$ X.', '03-09-2020'));
-    this.itens.push(new Aviso('Manutenção do portão', 'Foi realizado a manutenção do portão e gerou um gasto de R$ X.', '03-09-2020'));
-    this.itens.push(new Aviso('Manutenção do portão', 'Foi realizado a manutenção do portão e gerou um gasto de R$ X.', '03-09-2020'));
   }
-
 }

@@ -1,11 +1,13 @@
 export class Aviso {
     nome: string;
     descricao: string;
-    data: string;
+    dtCriacao: string;
+    dtExpiracao: string;
 
-    constructor(nome, descricao, data){
+    constructor(nome, descricao, dtCriacao, dtExpiracao){
         this.nome = nome;
         this.descricao = descricao;
-        this.data = data;
+        this.dtCriacao = dtCriacao;
+        this.dtExpiracao = dtExpiracao;
     }
 }
