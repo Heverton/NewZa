@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -9,8 +9,9 @@ import { environment } from 'src/environments/environment';
  */
 @Injectable()
 export abstract class GenericService<T> {
-    private header = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private api = environment.endpoints.api;
+    protected header = new HttpHeaders({ 'Content-Type': 'application/json'});
+    protected api = environment.endpoints.api;
+    protected params: HttpParams = new HttpParams();
 
     constructor(protected http: HttpClient, protected base: string){ }
 
@@ -30,7 +31,12 @@ export abstract class GenericService<T> {
         return this.http.patch<T[]>(`${this.api}/${this.base}`, body, {headers: this.header });
     }
 
-    public buscar(): Observable<T[]> {
-        return this.http.get<T[]>(`${this.api}/${this.base}`, {headers: this.header });
+    public buscarId(id: number): Observable<T[]> {
+        return this.http.get<T[]>(`${this.api}/${this.base}/${id}`, {headers: this.header});
+    }
+
+    public buscar(dados: T): Observable<T[]> {
+        const body = JSON.stringify(dados);
+        return this.http.post<T[]>(`${this.api}/${this.base}`, body, {headers: this.header});
     }
 }

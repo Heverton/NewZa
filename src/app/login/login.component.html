@@ -19,7 +19,7 @@
       <ion-input type="password" [(ngModel)]="senha"></ion-input>
     </ion-item>
     <ion-item>
-      <!-- <ion-button name="salvar" *ngIf="!estaAutenticado" color="primary" (click)="cadastrar()">Cadastrar</ion-button> -->
+      <ion-button name="salvar" *ngIf="!estaAutenticado" color="primary" (click)="cadastrar()">Cadastrar</ion-button>
       <ion-button name="salvar" *ngIf="!estaAutenticado" color="secondary" (click)="login()">Login</ion-button>
       <ion-button name="salvar" *ngIf="estaAutenticado" color="danger" (click)="logout()">Logout</ion-button>
     </ion-item>

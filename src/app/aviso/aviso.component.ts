@@ -12,7 +12,7 @@ export class AvisoComponent {
   itens = new Array<Aviso>();
 
   constructor(private service: AvisoService) {
-    this.service.buscar().subscribe(result => {
+    this.service.buscarId(1).subscribe(result => {
       console.log('Aqui', result);
     });
     this.itens.push(new Aviso('Manutenção do portão', 'Foi realizado a manutenção do portão e gerou um gasto de R$ X.', '03-09-2020'));
