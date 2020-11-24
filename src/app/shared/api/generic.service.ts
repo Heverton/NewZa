@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
  */
 @Injectable()
 export abstract class GenericService<T> {
-    protected header = new HttpHeaders({ 'Content-Type': 'application/json'});
+    protected header = new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8'});
     protected api = environment.endpoints.api;
     protected params: HttpParams = new HttpParams();
 
@@ -35,8 +35,8 @@ export abstract class GenericService<T> {
         return this.http.get<T[]>(`${this.api}/${this.base}`, {headers: this.header});
     }
 
-    public buscar(dados: T): Observable<T[]> {
+    public buscar(dados: T): Observable<T> {
         const body = JSON.stringify(dados);
-        return this.http.post<T[]>(`${this.api}/${this.base}`, body, {headers: this.header});
+        return this.http.post<T>(`${this.api}/${this.base}`, body, {headers: this.header});
     }
 }

@@ -1,3 +1,7 @@
+import { Imovel } from '../imovel/imovel';
+import { Login } from '../login/login';
+import { EstadoCivil } from './estadocivil';
+
 export class Inquilino {
     id: number;
     nome: string;
@@ -5,9 +9,14 @@ export class Inquilino {
     telefone: string;
     sexo: string;
     dtNascimento: string;
-    estadoCivil: string;
-    isPossuiFilhos: boolean;
-    isPossuiWhatsapp: boolean;
+
+    estadoCivil: EstadoCivil;
+    imovel: Imovel;
+    login: Login;
+
+    isPossuiFilhos = false;
+    isPossuiWhatsapp = false;
+
     nomeConjuge: string;
     sexoConjuge: string;
     dtNascimentoConjuge: string;

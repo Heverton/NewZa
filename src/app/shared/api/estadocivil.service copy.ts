@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Aviso } from 'src/app/aviso/aviso';
 import { GenericService } from './generic.service';
+import { EstadoCivil } from 'src/app/inquilino/estadocivil';
 
 @Injectable()
-export class AvisoService extends GenericService<Aviso> {
+export class EstadoCivilService extends GenericService<EstadoCivil> {
 
     constructor(protected http: HttpClient){
-        super(http, 'aviso');
+        super(http, 'estadocivil');
     }
 }

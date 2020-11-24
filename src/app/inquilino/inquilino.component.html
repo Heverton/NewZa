@@ -8,7 +8,7 @@
 
   <ion-card>
     <ion-card-header>
-      <form [formGroup]="inquilinoForm" (ngSubmit)="manterDados()">
+      <form [formGroup]="inquilinoForm" >
         <ion-item>
           <ion-label>Nome:</ion-label>
           <ion-input name="nome" required placeholder="Digite o nome." formControlName="nome" ></ion-input>
@@ -40,24 +40,26 @@
         <ion-item>
           <ion-label>Estado Civil:</ion-label>
           <ion-select name="estadoCivil" placeholder="Estado Civil" formControlName="estadoCivil" >
-            <ion-select-option *ngFor="let estado of estadocivil" value="{{estado.id}}">{{estado.nome}}</ion-select-option>
+            <ion-select-option *ngFor="let estado of estadocivil" value="{{ estado.id }}">{{estado.descricao}}</ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
           <ion-label>Possui filhos:</ion-label>
-          <ion-toggle name="possuiFilhos" color="primary" formControlName="isPossuiFilhos"></ion-toggle>
+          <ion-toggle name="possuiFilhos" color="primary" [(ngModel)]="inquilino.isPossuiFilhos" formControlName="isPossuiFilhos"></ion-toggle>
         </ion-item>
 
         <ion-item>
           <ion-label>O celular possui whasapp?</ion-label>
-          <ion-toggle name="isPossuiWhatsapp" color="primary" formControlName="isPossuiWhatsapp"></ion-toggle>
+          <ion-toggle name="isPossuiWhatsapp" color="primary" [(ngModel)]="inquilino.isPossuiWhatsapp" formControlName="isPossuiWhatsapp"></ion-toggle>
         </ion-item>
 
+        {{inquilinos | json}}
+
         <ion-item>
-          <ion-button name="salvar" [disabled]="!inquilinoForm.valid" color="primary" type="submit">Salvar</ion-button>
-          <ion-button name="editar" [disabled]="!inquilinoForm.valid" color="primary" type="submit">Editar</ion-button>
-          <ion-button name="excluir" [disabled]="!inquilinoForm.valid" color="primary" type="submit">Excluir</ion-button>
+          <ion-button name="salvar"  [disabled]="!inquilinoForm.valid" color="primary" type="button" (click)="salvarNovoInquilino()" >Salvar</ion-button>
+          <ion-button name="editar"  [disabled]="!inquilinoForm.valid" color="primary" type="button" (click)="editarNovoInquilino()">Editar</ion-button>
+          <ion-button name="excluir" [disabled]="!inquilinoForm.valid" color="primary" type="button" (click)="limparDados()">Excluir</ion-button>
         </ion-item>
       
       </form>
