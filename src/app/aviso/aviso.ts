@@ -1,8 +1,11 @@
+import { Data } from '@angular/router';
+
 export class Aviso {
+    id: number;
     nome: string;
     descricao: string;
-    dtCriacao: string;
-    dtExpiracao: string;
+    dtCriacao: Data;
+    dtExpiracao: Data;
 
     constructor(nome, descricao, dtCriacao, dtExpiracao){
         this.nome = nome;

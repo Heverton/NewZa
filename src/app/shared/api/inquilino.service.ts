@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Inquilino } from 'src/app/inquilino/Inquilino';
 import { GenericService } from './generic.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class InquilinoService extends GenericService<Inquilino> {
@@ -10,6 +11,10 @@ export class InquilinoService extends GenericService<Inquilino> {
         super(http, 'inquilino');
     }
 
+    public buscarPorCpf(dados: Inquilino): Observable<Inquilino> {
+        const body = JSON.stringify(dados);
+        return this.http.post<Inquilino>(`${this.api}/${this.base}/porCpf`, body, {headers: this.header});
+    }
 
 //     /**
 //    * Salva uma lista de documentos sigilosos

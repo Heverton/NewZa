@@ -1,3 +1,4 @@
+import { Data } from '@angular/router';
 import { Imovel } from '../imovel/imovel';
 import { Login } from '../login/login';
 import { EstadoCivil } from './estadocivil';
@@ -8,7 +9,7 @@ export class Inquilino {
     cpf: string;
     telefone: string;
     sexo: string;
-    dtNascimento: string;
+    dtNascimento: Data;
 
     estadoCivil: EstadoCivil;
     imovel: Imovel;

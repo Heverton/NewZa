@@ -6,12 +6,10 @@
 
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let item of itens">
-    <ion-card-header>
+    <ion-card-header (click)="ativaModal(item)">
       <ion-card-subtitle>{{item.dtCriacao | date: 'dd/MM/yyyy' }}</ion-card-subtitle>
-      <ion-card-title>{{item.nome}}</ion-card-title>
+      <ion-card-title >{{item.nome}}</ion-card-title>
       <ion-card-subtitle>{{item.descricao}}</ion-card-subtitle>
     </ion-card-header>
-    <!-- <ion-card-content>{{item.descricao}}</ion-card-content> -->
-    <!-- <ion-label>{{item.data}}</ion-label> -->
   </ion-card>
 </ion-content>

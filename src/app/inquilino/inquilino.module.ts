@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { InquilinoComponent } from './inquilino.component';
 import { InquilinoRoutingModule } from './inquilino-routing.module';
+import { InquilinoModalComponent } from './modal/inquilino.modal.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { InquilinoRoutingModule } from './inquilino-routing.module';
     InquilinoRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [InquilinoComponent],
+  declarations: [InquilinoComponent, InquilinoModalComponent],
   providers: [
     FormBuilder
   ]

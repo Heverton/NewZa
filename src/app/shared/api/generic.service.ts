@@ -26,7 +26,6 @@ export abstract class GenericService<T> {
     }
 
     public excluir(dados: T): Observable<T[]> {
-        // TODO verificar
         const body = JSON.stringify(dados);
         return this.http.patch<T[]>(`${this.api}/${this.base}`, body, {headers: this.header });
     }
