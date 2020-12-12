@@ -1,0 +1,39 @@
+<ion-card>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>Aviso</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-card-header>
+    <form [formGroup]="avisoForm" >
+      <ion-item>
+        <ion-label>Nome:</ion-label>
+        <ion-input name="nome" formControlName="nome" required placeholder="Digite o nome." ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Descrição:</ion-label>
+        <ion-input name="descricao" formControlName="descricao"  required placeholder="Digite a descrição." ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data de criação:</ion-label>
+        <ion-datetime displayFormat="DD MM YYYY" name="dtCriacao" formControlName="dtCriacao" placeholder="Digite a data de criação." display-timezone="utc"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data de expiração:</ion-label>
+        <ion-datetime displayFormat="DD MM YYYY" name="dtExpiracao" formControlName="dtExpiracao" placeholder="Digite a data de criação." display-timezone="utc"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-button name="salvar"  [disabled]="!avisoForm.valid" color="primary" type="button" (click)="salvar()">Salvar</ion-button>
+        <ion-button name="editar"  [disabled]="!avisoForm.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
+        <ion-button name="excluir" [disabled]="!avisoForm.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+      </ion-item>
+    
+    </form>
+
+  </ion-card-header>
+</ion-card>

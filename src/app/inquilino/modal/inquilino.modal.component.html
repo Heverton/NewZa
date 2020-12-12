@@ -1,0 +1,64 @@
+<ion-card>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title >Inquilino</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-card-header>
+    <form [formGroup]="formb" >
+      <ion-item>
+        <ion-label>Nome:</ion-label>
+        <ion-input name="nome" required placeholder="Digite o nome." formControlName="nome" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>CPF:</ion-label>
+        <ion-input name="nome" required placeholder="Digite o número do CPF." formControlName="cpf" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefone:</ion-label>
+        <ion-input name="telefone" placeholder="Digite o telefone ou celular." type="tel"  formControlName="telefone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Sexo:</ion-label>
+        <ion-select name="sexo" placeholder="Sexo" formControlName="sexo">
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="feminino">Feminino</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data de nascimento:</ion-label>
+        <ion-datetime displayFormat="DD MM YYYY" name="dtNascimento" formControlName="dtNascimento" placeholder="Digite a data de criação." display-timezone="utc"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Estado Civil:</ion-label>
+        <ion-select name="estadoCivil" placeholder="Estado Civil" formControlName="estadoCivil" >
+          <ion-select-option selected value="{{ item.estadoCivil.id }}" >{{item.estadoCivil.descricao}}</ion-select-option>
+          <ion-select-option *ngFor="let estado of estadocivil" value="{{ estado.id }}">{{estado.descricao}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Possui filhos:</ion-label>
+        <ion-toggle name="possuiFilhos" color="primary" formControlName="isPossuiFilhos"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>O celular possui whasapp?</ion-label>
+        <ion-toggle name="isPossuiWhatsapp"  color="primary" formControlName="isPossuiWhatsapp"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-button name="salvar"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
+        <ion-button name="editar"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
+        <ion-button name="excluir" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+      </ion-item>
+    </form>
+
+  </ion-card-header>
+</ion-card>
