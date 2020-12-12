@@ -1,4 +1,4 @@
-# newza
+# newza-frontend
 
 Gerenciador de consumo elétrico.
 
