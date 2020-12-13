@@ -1,0 +1,45 @@
+<ion-card>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title >Energia</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-card-header>
+    <form [formGroup]="formb" >
+      <ion-item>
+        <ion-label>Nome:</ion-label>
+        <!-- disabled="true"  -->
+        <ion-input name="nome" required placeholder="Digite o nome." formControlName="nomeinquilino" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Medidor:</ion-label>
+        <ion-input name="numeromedidor" required placeholder="Digite número do medidor." formControlName="numeromedidor" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Número Anterior:</ion-label>
+        <ion-input name="numeroalterior" placeholder="Digite o número da medida anterior." type="number"  formControlName="numeroalterior"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Número Atual:</ion-label>
+        <ion-input name="numeroatual" placeholder="Digite o número da medida atual." type="number"  formControlName="numeroatual"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data da leitura:</ion-label>
+        <ion-datetime displayFormat="DD MM YYYY" name="dataleitura" formControlName="dataleitura" placeholder="Digite a data da leitura." display-timezone="utc"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-button name="salvar"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
+        <ion-button name="editar"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
+        <ion-button name="excluir" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+        <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
+      </ion-item>
+    </form>
+
+  </ion-card-header>
+</ion-card>

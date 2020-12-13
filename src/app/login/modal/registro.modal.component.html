@@ -1,0 +1,55 @@
+<ion-card>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title >Novo Usuário</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-card-header>
+    <form [formGroup]="formb">
+      <ion-item>
+        <ion-label>Login:</ion-label>
+        <ion-input name="login" required placeholder="Digite o login." formControlName="login" ></ion-input>
+        <div *ngIf="formb.controls['login'].hasError('required')" style="color: red; padding-top: 0.2rem" >
+          Campo obrigatorio.
+        </div>
+      </ion-item>
+      <!-- TODO https://coryrylan.com/blog/angular-form-builder-and-validation-management -->
+      <!-- TODO https://www.npmjs.com/package/ion-form-error-messages -->
+
+      <ion-item>
+        <ion-label>Senha:</ion-label>
+        <ion-input name="senha" required placeholder="Digite a senha." formControlName="senha" ></ion-input>
+        <div *ngIf="formb.controls['senha'].hasError('required')" style="color: red; padding-top: 0.2rem" >
+          Campo obrigatorio.
+        </div>
+      </ion-item>
+
+      <!-- TODO criar validação de inquilinos habilitados -->
+      <!-- <ion-item>
+        <ion-label>CPF:</ion-label>
+        <ion-input name="cpf" required placeholder="Digite o CPF para validar se é um inquilino." formControlName="cpf" ></ion-input>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label>Repita a senha:</ion-label>
+        <ion-input name="confirmarSenha" placeholder="Digite senha para confirmar." formControlName="confirmarSenha"></ion-input>
+        <div *ngIf="formb.controls['confirmarSenha'].hasError('required')" style="color: red; padding-top: 0.2rem" >
+          Campo obrigatorio.
+        </div>
+        {{formb.controls['confirmarSenha'].hasError('validarSenhas')}}
+        <div *ngIf="formb.controls['confirmarSenha'].hasError('validarSenhas') && formb.controls['confirmarSenha'].touched" style="color: red; padding-top: 0.2rem" >
+          O Campo senha esta diferente do campo confimarSenha.
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-button name="salvar"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
+        <ion-button name="editar"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
+        <ion-button name="excluir" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+        <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
+      </ion-item>
+    </form>
+
+  </ion-card-header>
+</ion-card>

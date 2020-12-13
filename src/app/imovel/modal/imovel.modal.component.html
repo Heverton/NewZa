@@ -1,0 +1,44 @@
+<ion-card>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title >Imovel</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-card-header>
+    <form [formGroup]="formb" >
+      <ion-item>
+        <ion-label>Nome:</ion-label>
+        <ion-input name="nome" required placeholder="Digite o nome." formControlName="nome" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Descrição:</ion-label>
+        <ion-input name="descricao" required placeholder="Digite a descrição." formControlName="descricao" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Valor:</ion-label>
+        <ion-input name="valor" placeholder="Digite o valor ou celular." type="number"  formControlName="valor"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Sigla:</ion-label>
+        <ion-input name="sigla" required placeholder="Digite a sigla." formControlName="sigla" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Quantidade de comodos:</ion-label>
+        <ion-input name="qtdComodos" placeholder="Digite a quantidade de comodos." type="number"  formControlName="qtdComodos"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button name="salvar"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
+        <ion-button name="editar"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
+        <ion-button name="excluir" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+        <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
+      </ion-item>
+    </form>
+
+  </ion-card-header>
+</ion-card>
