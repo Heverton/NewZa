@@ -5,6 +5,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-button name="novo" *ngIf="isAdministrador" color="primary" type="button" (click)="ativaModal()" >Novo</ion-button>
+  <!-- Lista -->
   <ion-card *ngFor="let item of itens">
     <ion-card-header (click)="ativaModal(item)">
       <ion-card-subtitle>{{item.dtCriacao | date: 'dd/MM/yyyy' }}</ion-card-subtitle>

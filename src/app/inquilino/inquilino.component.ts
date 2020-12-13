@@ -12,8 +12,10 @@ import { InquilinoModalComponent } from './modal/inquilino.modal.component';
 export class InquilinoComponent implements OnInit {
 
   itens: Array<Inquilino>;
+  // TODO criar a verificação para saber se é novo adminstrador ou não
+  isAdministrador = true; 
 
-  constructor(private inquoService: InquilinoService, private avisoModal: ModalController) {}
+  constructor(private inquoService: InquilinoService, private md: ModalController) {}
 
   ngOnInit(): void {
     this.inquoService.buscarAll().subscribe(data => {
@@ -23,13 +25,20 @@ export class InquilinoComponent implements OnInit {
     });
   }
 
-  async ativaModal(itemmodal: Inquilino) {
-    const modal = await this.avisoModal.create({
+  async ativaModal(itemmodal?: Inquilino): Promise<void> {
+    itemmodal = (itemmodal == null)? new Inquilino() : itemmodal;
+    const modal = await this.md.create({
       component: InquilinoModalComponent,
       cssClass: 'modal-class',
       componentProps: {item: itemmodal}
     });
-    return await modal.present();
+    // init modal
+    await modal.present();
+    // Retorno no close
+    const dadosCloseModal = await modal.onDidDismiss();
+    if (dadosCloseModal) {
+      this.ngOnInit();
+    }
   }
 
 }

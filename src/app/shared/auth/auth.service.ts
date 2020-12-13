@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,8 +9,11 @@ import { JwtRequest } from './jwt-request';
 @Injectable()
 export class AuthService extends GenericService<JwtRequest> {
 
-    constructor(protected http: HttpClient, protected service: string, private router: Router){
+    private httpClient: HttpClient;
+
+    constructor(handler: HttpBackend, protected http: HttpClient, protected service: string, private router: Router){
         super(http, 'autenticacao');
+        this.httpClient = new HttpClient(handler);
         // Login OK
         // localStorage.setItem('token');
     }
@@ -35,7 +38,8 @@ export class AuthService extends GenericService<JwtRequest> {
         const jwtr = new JwtRequest();
         jwtr.username = login.nome;
         jwtr.password = login.senha;
-        super.buscar(jwtr).subscribe((data) => {
+        console.log(jwtr);
+        this.buscar(jwtr).subscribe((data) => {
             console.log(data);
             localStorage.setItem('access_token', data['token']);
             this.router.navigate(['sis/abas/aviso']);
@@ -43,6 +47,17 @@ export class AuthService extends GenericService<JwtRequest> {
             localStorage.setItem('access_token', '');
             console.log(erro);
         });
+    }
+
+    /**
+     * Utilizar essa para fazer o primeiro login
+     * https://stackoverflow.com/questions/46469349/how-to-make-an-angular-module-to-ignore-http-interceptor-added-in-a-core-module
+     * 
+     * @param dados 
+     */
+    public buscar(dados: JwtRequest): Observable<JwtRequest> {
+        const body = JSON.stringify(dados);
+        return this.httpClient.post<JwtRequest>(`${this.api}/${this.base}`, body, {headers: this.header});
     }
 
 

@@ -18,6 +18,7 @@ export class Interceptor implements HttpInterceptor {
 
     // TODO https://itnext.io/handle-http-responses-with-httpinterceptor-and-toastr-in-angular-3e056759cb16
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
         request = request.clone({
             headers: request.headers.set('Authorization', `Bearer ${this.auth.getToken()}`)
         });

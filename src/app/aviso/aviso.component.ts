@@ -10,24 +10,38 @@ import { AvisoModalComponent } from './modal/aviso.modal.component';
   styleUrls: ['aviso.component.scss']
 })
 export class AvisoComponent implements OnInit {
-
+  
   itens: Aviso[] = new Array<Aviso>();
+  // TODO criar a verificação para saber se é novo adminstrador ou não
+  isAdministrador = true; 
 
-  constructor(private service: AvisoService, private modal: ModalController) {}
+  constructor(private service: AvisoService, 
+              private md: ModalController) {}
 
   ngOnInit(): void {
     this.service.buscarAll().subscribe(result => {
       this.itens = result;
+    }, err => {
+      console.log('Erro', err);
     });
   }
 
-  async ativaModal(item: Aviso) {
-    const modal = await this.modal.create({
+  async ativaModal(itemmodal?: Aviso): Promise<void> {
+    itemmodal = (itemmodal === undefined)? new Aviso() : itemmodal;
+    const modal = await this.md.create({
       component: AvisoModalComponent,
       cssClass: 'modal-class',
-      componentProps: {aviso: item}
+      componentProps: {aviso: itemmodal},
+      swipeToClose: true,
+      presentingElement: await this.md.getTop(),
     });
-    return await modal.present();
+    // init modal
+    await modal.present();
+    // Retorno no close
+    const dadosCloseModal = await modal.onDidDismiss();
+    if (dadosCloseModal) {
+      this.ngOnInit();
+    }
   }
 
 }

@@ -1,9 +1,10 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImovelRoutingModule } from './imovel-routing.module';
 import { ImovelComponent } from './imovel.component';
+import { ImovelModalComponent } from './modal/imovel.modal.component';
 
 
 @NgModule({
@@ -11,8 +12,13 @@ import { ImovelComponent } from './imovel.component';
     IonicModule,
     CommonModule,
     FormsModule,
-    ImovelRoutingModule
+    ImovelRoutingModule,
+    ReactiveFormsModule
   ],
-  declarations: [ImovelComponent]
+  declarations: [
+    ImovelComponent,
+    ImovelModalComponent
+  ],
+  providers: [ FormBuilder ]
 })
 export class ImovelModule {}

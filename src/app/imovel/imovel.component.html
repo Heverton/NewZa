@@ -5,8 +5,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let item of itens">
-    <ion-card-header>
+  <ion-button name="novo" *ngIf="isAdministrador" color="primary" type="button" (click)="ativaModal()" >Novo</ion-button>
+  <!-- Lista -->
+  <ion-card *ngFor="let item of itens" >
+    <ion-card-header (click)="ativaModal(item)">
       <ion-card-subtitle>{{item.nome}}</ion-card-subtitle>
       <ion-card-title>{{item.descricao}}</ion-card-title>
       <ion-card-subtitle>R$: {{item.valor}}</ion-card-subtitle>

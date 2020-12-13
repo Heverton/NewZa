@@ -1,11 +1,12 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { ApiModule } from '../shared/api.module';
+import { RegistroModalComponent } from './modal/registro.modal.component';
 
 
 @NgModule({
@@ -14,9 +15,13 @@ import { ApiModule } from '../shared/api.module';
     CommonModule,
     FormsModule,
     LoginRoutingModule,
-    ApiModule
+    ApiModule,
+    ReactiveFormsModule
   ],
-  declarations: [LoginComponent],
-  providers: [GooglePlus]
+  declarations: [LoginComponent, RegistroModalComponent],
+  providers: [
+    FormBuilder,
+    GooglePlus
+  ]
 })
 export class LoginModule {}

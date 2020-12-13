@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { EnergiaService } from '../shared/api/energia.service';
 import { Energia } from './energia';
+import { EnergiaModalComponent } from './modal/energia.modal.component';
 
 @Component({
   selector: 'app-energia',
@@ -11,17 +13,33 @@ export class EnergiaComponent implements OnInit {
 
   itens = new Array<Energia>();
   fatorMultiplicador = 0.90;
+  // TODO criar a verificação para saber se é novo adminstrador ou não
+  isAdministrador = true; 
 
-  // constructor() {}
-  // this.itens.push(new Energia('Heverton', '634263746', 1232.40 , 1421.40, '03-09-2020'));
-  // this.itens.push(new Energia('Jose', '2423423', 48.40 , 56.40, '03-09-2020'));
-
-  constructor(private service: EnergiaService) {}
-
+  constructor(private service: EnergiaService, 
+              private md: ModalController) {}
+  
   ngOnInit(): void {
     this.service.buscarAll().subscribe(result => {
       this.itens = result;
     });
+  }
+  async ativaModal(itemmodal?: Energia): Promise<void> {
+    itemmodal = (itemmodal === undefined)? new Energia() : itemmodal;
+    const modal = await this.md.create({
+      component: EnergiaModalComponent,
+      cssClass: 'modal-class',
+      componentProps: {item: itemmodal},
+      swipeToClose: true,
+      presentingElement: await this.md.getTop(),
+    });
+    // init modal
+    await modal.present();
+    // Retorno no close
+    const dadosCloseModal = await modal.onDidDismiss();
+    if (dadosCloseModal) {
+      this.ngOnInit();
+    }
   }
 
 }

@@ -38,8 +38,16 @@
       <ion-item>
         <ion-label>Estado Civil:</ion-label>
         <ion-select name="estadoCivil" placeholder="Estado Civil" formControlName="estadoCivil" >
-          <ion-select-option selected value="{{ item.estadoCivil.id }}" >{{item.estadoCivil.descricao}}</ion-select-option>
+          <ion-select-option *ngIf="item.estadoCivil" selected value="{{ item.estadoCivil.id }}" >{{item.estadoCivil.descricao}}</ion-select-option>
           <ion-select-option *ngFor="let estado of estadocivil" value="{{ estado.id }}">{{estado.descricao}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Imovel:</ion-label>
+        <ion-select name="imovel" placeholder="Imovel" formControlName="imovel" >
+          <ion-select-option *ngIf="item.imovel" selected value="{{ item.imovel.id }}" >{{item.imovel.descricao}}</ion-select-option>
+          <ion-select-option *ngFor="let imovel of imoveis" value="{{ imovel.id }}">{{imovel.descricao}}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -57,6 +65,8 @@
         <ion-button name="salvar"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
         <ion-button name="editar"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
         <ion-button name="excluir" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+        <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
+        
       </ion-item>
     </form>
 
