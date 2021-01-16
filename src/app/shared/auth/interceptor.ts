@@ -35,7 +35,7 @@ export class Interceptor implements HttpInterceptor {
                     //     text: err.error
                     // });
                 }
-                // console.log('Erro', err);
+                console.log('Erro', err);
                 return of(err);
             })
         );

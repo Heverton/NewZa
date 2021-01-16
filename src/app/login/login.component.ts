@@ -25,8 +25,8 @@ export class LoginComponent {
               private auth: AuthService, 
               private googlePlus: GooglePlus,
               private md: ModalController){
-    this.email = 'springuser';
-    this.senha = 'password';
+    this.email = '123';
+    this.senha = '123';
   }
 
   login(): void{
