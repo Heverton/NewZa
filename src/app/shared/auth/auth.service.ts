@@ -38,15 +38,13 @@ export class AuthService extends GenericService<JwtRequest> {
         const jwtr = new JwtRequest();
         jwtr.username = login.nome;
         jwtr.password = login.senha;
-        console.log(jwtr);
-        // this.header = this.header.append('Authorization', `Bearer`);
         this.buscar(jwtr).subscribe((data) => {
             console.log(data);
-            localStorage.setItem('access_token', data['token']);
+            localStorage.setItem('access_token', data[1]['token']);
             this.router.navigate(['sis/abas/aviso']);
-        }, (erro) => {
+        }, (error) => {
             localStorage.setItem('access_token', '');
-            console.log(erro);
+            console.log(error);
         });
     }
 
@@ -58,10 +56,6 @@ export class AuthService extends GenericService<JwtRequest> {
      */
     public buscar(dados: JwtRequest): Observable<JwtRequest> {
         const body = JSON.stringify(dados);
-        console.log(this.header);
-        console.log(this.api);
-        console.log(this.base);
-        this.header.set('Authorization', `Bearer`);
         return this.httpClient.post<JwtRequest>(`${this.api}/${this.base}`, body, {headers: this.header});
     }
 

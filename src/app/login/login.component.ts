@@ -25,7 +25,8 @@ export class LoginComponent {
               private auth: AuthService, 
               private googlePlus: GooglePlus,
               private md: ModalController){
-    this.email = '123';
+
+    this.email = 'cliente';
     this.senha = '123';
   }
 
