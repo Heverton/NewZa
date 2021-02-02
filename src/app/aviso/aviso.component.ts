@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AvisoService } from '../shared/api/aviso.service';
+import { UsuarioLogado } from '../shared/auth/usuario-logado';
 import { Aviso } from './aviso';
 import { AvisoModalComponent } from './modal/aviso.modal.component';
 
@@ -12,8 +13,7 @@ import { AvisoModalComponent } from './modal/aviso.modal.component';
 export class AvisoComponent implements OnInit {
   
   itens: Aviso[] = new Array<Aviso>();
-  // TODO criar a verificação para saber se é novo adminstrador ou não
-  isAdministrador = true; 
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador(); 
 
   constructor(private service: AvisoService, 
               private md: ModalController) {}

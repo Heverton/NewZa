@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { EnergiaService } from '../shared/api/energia.service';
+import { UsuarioLogado } from '../shared/auth/usuario-logado';
 import { Energia } from './energia';
 import { EnergiaModalComponent } from './modal/energia.modal.component';
 
@@ -13,16 +14,21 @@ export class EnergiaComponent implements OnInit {
 
   itens = new Array<Energia>();
   fatorMultiplicador = 0.90;
-  // TODO criar a verificação para saber se é novo adminstrador ou não
-  isAdministrador = true; 
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador(); 
 
   constructor(private service: EnergiaService, 
               private md: ModalController) {}
   
   ngOnInit(): void {
-    this.service.buscarAll().subscribe(result => {
-      this.itens = result;
-    });
+    if (UsuarioLogado.getUsuarioLogadoPerfilCliente()) {
+      this.service.buscarId(UsuarioLogado.getUsuarioLogadoId()).subscribe(result => {
+        this.itens = result;
+      });
+    } else {
+      this.service.buscarAll().subscribe(result => {
+        this.itens = result;
+      });
+    }
   }
   async ativaModal(itemmodal?: Energia): Promise<void> {
     itemmodal = (itemmodal === undefined)? new Energia() : itemmodal;

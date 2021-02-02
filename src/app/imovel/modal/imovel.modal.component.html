@@ -33,9 +33,9 @@
       </ion-item>
 
       <ion-item>
-        <ion-button name="salvar"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
-        <ion-button name="editar"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
-        <ion-button name="excluir" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+        <ion-button name="salvar"  *ngIf="isAdministrador"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
+        <ion-button name="editar"  *ngIf="isAdministrador"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
+        <ion-button name="excluir" *ngIf="isAdministrador" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
         <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
       </ion-item>
     </form>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Login } from 'src/app/login/login';
 import { GenericService } from '../api/generic.service';
 import { JwtRequest } from './jwt-request';
+import { UsuarioLogado } from './usuario-logado';
 
 @Injectable()
 export class AuthService extends GenericService<JwtRequest> {
@@ -27,27 +28,9 @@ export class AuthService extends GenericService<JwtRequest> {
         // Criar serviço para verificar se já expirou o token
 
         // https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
-        return (this.getToken() !== null); // !this.jwtHelper.isTokenExpired(token);
+        console.log(UsuarioLogado.getToken() !== null);
+        return UsuarioLogado.getToken() !== null; // !this.jwtHelper.isTokenExpired(token);
     }
-
-    public getToken(): string{
-        return localStorage.getItem('access_token');
-    }
-
-    public login(login: Login): void {
-        const jwtr = new JwtRequest();
-        jwtr.username = login.nome;
-        jwtr.password = login.senha;
-        this.buscar(jwtr).subscribe((data) => {
-            console.log(data);
-            localStorage.setItem('access_token', data[1]['token']);
-            this.router.navigate(['sis/abas/aviso']);
-        }, (error) => {
-            localStorage.setItem('access_token', '');
-            console.log(error);
-        });
-    }
-
     /**
      * Utilizar essa para fazer o primeiro login
      * https://stackoverflow.com/questions/46469349/how-to-make-an-angular-module-to-ignore-http-interceptor-added-in-a-core-module
@@ -59,5 +42,28 @@ export class AuthService extends GenericService<JwtRequest> {
         return this.httpClient.post<JwtRequest>(`${this.api}/${this.base}`, body, {headers: this.header});
     }
 
+    public login(login: Login): void {
+        const jwtr = new JwtRequest();
+        jwtr.username = login.nome;
+        jwtr.password = login.senha;
+        this.buscar(jwtr).subscribe((data) => {
+            console.log(data);
+            UsuarioLogado.setToken(data[1]['token'])
+            UsuarioLogado.setUsuarioLogado(JSON.stringify(data[0]))
+            this.router.navigate(['sis/abas/aviso']);
+        }, (error) => {
+            this.clearStorage();
+            console.log(error);
+        });
+    }
+
+    public logout(): void {
+        this.clearStorage();
+        this.router.navigate(['']);
+    }
+
+    private clearStorage(): void {
+        UsuarioLogado.clearStorage();
+    }
 
 }

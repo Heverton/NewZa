@@ -24,7 +24,7 @@
 
       <ion-item>
         <ion-label>Sexo:</ion-label>
-        <ion-select name="sexo" placeholder="Sexo" formControlName="sexo">
+        <ion-select name="sexo" [value]="item.sexo" [selectedText]="item.sexo"  placeholder="Sexo" formControlName="sexo">
           <ion-select-option value="masculino">Masculino</ion-select-option>
           <ion-select-option value="feminino">Feminino</ion-select-option>
         </ion-select>
@@ -35,18 +35,17 @@
         <ion-datetime displayFormat="DD MM YYYY" name="dtNascimento" formControlName="dtNascimento" placeholder="Digite a data de criação." display-timezone="utc"></ion-datetime>
       </ion-item>
 
+      <!-- https://medium.com/better-programming/custom-input-in-ion-select-with-ionic-4-angular-8-daafe44c0f55 -->
       <ion-item>
         <ion-label>Estado Civil:</ion-label>
-        <ion-select name="estadoCivil" placeholder="Estado Civil" formControlName="estadoCivil" >
-          <ion-select-option *ngIf="item.estadoCivil" selected value="{{ item.estadoCivil.id }}" >{{item.estadoCivil.descricao}}</ion-select-option>
-          <ion-select-option *ngFor="let estado of estadocivil" value="{{ estado.id }}">{{estado.descricao}}</ion-select-option>
+        <ion-select name="estadoCivil" [value]="item.estadoCivil.descricao" [selectedText]="item.estadoCivil.descricao" placeholder="Estado Civil" formControlName="estadoCivil" >
+          <ion-select-option *ngFor="let estado of estadocivil" [value]="estado.id" >{{estado.descricao}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Imovel:</ion-label>
-        <ion-select name="imovel" placeholder="Imovel" formControlName="imovel" >
-          <ion-select-option *ngIf="item.imovel" selected value="{{ item.imovel.id }}" >{{item.imovel.descricao}}</ion-select-option>
+        <ion-select name="imovel"  [value]="item.imovel.descricao" [selectedText]="item.imovel.descricao" placeholder="Imovel" formControlName="imovel" >
           <ion-select-option *ngFor="let imovel of imoveis" value="{{ imovel.id }}">{{imovel.descricao}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -62,9 +61,9 @@
       </ion-item>
 
       <ion-item>
-        <ion-button name="salvar"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
-        <ion-button name="editar"  [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
-        <ion-button name="excluir" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
+        <ion-button name="salvar" *ngIf="isAdministrador"  [disabled]="!formb.valid" color="primary" type="button" (click)="salvar()" >Salvar</ion-button>
+        <ion-button name="editar"  *ngIf="isAdministrador" [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
+        <ion-button name="excluir" *ngIf="isAdministrador" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
         <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
         
       </ion-item>

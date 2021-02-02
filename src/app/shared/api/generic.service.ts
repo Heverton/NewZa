@@ -38,6 +38,10 @@ export abstract class GenericService<T> {
         return this.http.get<T[]>(`${this.api}/${this.base}`, {headers: this.header});
     }
 
+    public buscarId(id: Number): Observable<T[]> {
+        return this.http.get<T[]>(`${this.api}/${this.base}/${id}`, {headers: this.header});
+    }
+
     public buscar(dados: T): Observable<T> {
         const body = JSON.stringify(dados);
         return this.http.post<T>(`${this.api}/${this.base}`, body, {headers: this.header});

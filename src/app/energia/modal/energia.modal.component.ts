@@ -4,6 +4,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { Inquilino } from 'src/app/inquilino/Inquilino';
 import { EnergiaService } from 'src/app/shared/api/energia.service';
 import { InquilinoService } from 'src/app/shared/api/inquilino.service';
+import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
 import { Energia } from '../energia';
 
 @Component({
@@ -16,6 +17,7 @@ export class EnergiaModalComponent implements OnInit {
   @Input() item: Energia;
   formb: FormGroup;
   inquilinos: Inquilino[];
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador(); 
 
   constructor(private service: EnergiaService, 
               private inquiService: InquilinoService, 
@@ -34,11 +36,16 @@ export class EnergiaModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.inquiService.buscarAll().subscribe(result => {
-      console.log('inquilinos', result);
-      this.inquilinos = result;
-    });
+    if (UsuarioLogado.getUsuarioLogadoPerfilCliente()) {
+      this.inquiService.buscarId(UsuarioLogado.getUsuarioLogadoId()).subscribe(result => {
+        this.inquilinos = result;
+      });
+    } else {
+      this.inquiService.buscarAll().subscribe(result => {
+        console.log('imovelService', result);
+        this.inquilinos = result;
+      });
+    }
 
     this.formb.patchValue(this.item);
     console.log('this.item', this.item);

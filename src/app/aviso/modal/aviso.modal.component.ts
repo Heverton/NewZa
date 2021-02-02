@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AvisoService } from 'src/app/shared/api/aviso.service';
+import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
 import { Aviso } from '../aviso';
 
 @Component({
@@ -13,6 +14,7 @@ export class AvisoModalComponent implements OnInit {
 
   @Input() aviso: Aviso;
   avisoForm: FormGroup;
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador(); 
 
   constructor(private service: AvisoService, 
               private formBuilder: FormBuilder, 

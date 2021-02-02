@@ -6,6 +6,7 @@ import { Login } from 'src/app/login/login';
 import { EstadoCivilService } from 'src/app/shared/api/estadocivil.service copy';
 import { ImovelService } from 'src/app/shared/api/imovel.service';
 import { InquilinoService } from 'src/app/shared/api/inquilino.service';
+import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
 import { EstadoCivil } from '../estadocivil';
 import { Inquilino } from '../Inquilino';
 
@@ -20,6 +21,7 @@ export class InquilinoModalComponent implements OnInit {
   formb: FormGroup;
   estadocivil: EstadoCivil[];
   imoveis: Imovel[];
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador(); 
 
   // https://ionicframework.com/docs/v3/developer-resources/forms/
   // https://www.npmjs.com/package/ngx-mask-ionic
@@ -57,10 +59,16 @@ export class InquilinoModalComponent implements OnInit {
       this.estadocivil = result;
     });
 
-    this.imovelService.buscarAll().subscribe(result => {
-      console.log('imovelService', result);
-      this.imoveis = result;
-    });
+    if (UsuarioLogado.getUsuarioLogadoPerfilCliente()) {
+      this.imovelService.buscarId(UsuarioLogado.getUsuarioLogadoId()).subscribe(result => {
+        this.imoveis = result;
+      });
+    } else {
+      this.imovelService.buscarAll().subscribe(result => {
+        console.log('imovelService', result);
+        this.imoveis = result;
+      });
+    }
 
     this.formb.patchValue(this.item);
     console.log('this.item', this.item);
