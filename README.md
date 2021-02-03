@@ -24,6 +24,8 @@ node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build
 ionic cordova build android --prod --release --verbose --max_old_space_size=40960
     ng run app:ionic-cordova-build:production --platform=android
 
+https://stackoverflow.com/questions/39705491/error-source-path-does-not-exist-resources-android-icon-drawable-hdpi-icon-png
+
 # Assinar versão do APK
 https://ionicframework.com/docs/v3/intro/deploying/
 
