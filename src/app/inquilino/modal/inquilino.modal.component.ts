@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Imovel } from 'src/app/imovel/imovel';
 import { Login } from 'src/app/login/login';
-import { EstadoCivilService } from 'src/app/shared/api/estadocivil.service copy';
+import { EstadoCivilService } from 'src/app/shared/api/estadocivil.service';
 import { ImovelService } from 'src/app/shared/api/imovel.service';
 import { InquilinoService } from 'src/app/shared/api/inquilino.service';
 import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';

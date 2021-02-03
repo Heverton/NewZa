@@ -6,7 +6,7 @@ import { Imovel } from 'src/app/imovel/imovel';
 @Injectable()
 export class ImovelService extends GenericService<Imovel> {
 
-    constructor(protected http: HttpClient, protected service: string){
+    constructor(http: HttpClient, service: String){
         super(http, 'imovel');
     }
 }

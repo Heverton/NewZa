@@ -13,7 +13,7 @@ export abstract class GenericService<T> {
     protected api = environment.endpoints.api;
     protected params: HttpParams = new HttpParams();
 
-    constructor(protected http: HttpClient, protected base: string){ }
+    constructor(public http: HttpClient, public base: String){ }
 
     public inserir(dados: T): Observable<T[]> {
         const body = JSON.stringify(dados);

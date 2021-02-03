@@ -17,4 +17,8 @@ ionic cap open android
 
 https://ionicframework.com/docs/cli/commands/capacitor-run
 https://ionicframework.com/docs/cli/livereload
+https://ionicframework.com/docs/angular/your-first-app/6-deploying-mobile
+
+# Assinar versão do APK
+https://ionicframework.com/docs/v3/intro/deploying/
 

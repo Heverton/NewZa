@@ -6,7 +6,7 @@ import { GenericService } from './generic.service';
 @Injectable()
 export class AvisoService extends GenericService<Aviso> {
 
-    constructor(protected http: HttpClient){
+    constructor(http: HttpClient){
         super(http, 'aviso');
     }
 }

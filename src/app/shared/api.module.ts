@@ -2,7 +2,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AvisoService } from './api/aviso.service';
 import { EnergiaService } from './api/energia.service';
-import { EstadoCivilService } from './api/estadocivil.service copy';
+import { EstadoCivilService } from './api/estadocivil.service';
 import { ImovelService } from './api/imovel.service';
 import { InquilinoService } from './api/inquilino.service';
 import { LoginService } from './api/login.service';
