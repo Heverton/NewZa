@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiModule } from './shared/api.module';
 import { CommonModule } from '@angular/common';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     ApiModule,
     CommonModule,
+    LoginModule
   ],
   providers: [
     StatusBar,

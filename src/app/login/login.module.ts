@@ -8,15 +8,14 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { ApiModule } from '../shared/api.module';
 import { RegistroModalComponent } from './modal/registro.modal.component';
 
-
 @NgModule({
   imports: [
-    IonicModule,
     CommonModule,
     FormsModule,
     LoginRoutingModule,
     ApiModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IonicModule.forRoot(),
   ],
   declarations: [LoginComponent, RegistroModalComponent],
   providers: [
