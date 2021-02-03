@@ -1,9 +1,9 @@
 {
   "name": "newza",
-  "version": "0.0.2",
+  "version": "1.1.0",
   "author": "Silva Cruz",
-  "description": "An Ionic project",
-  "homepage": "https://ionicframework.com/",
+  "description": "Newza Gestão",
+  "homepage": "https://newza.com.br",
   "scripts": {
     "ng": "ng",
     "start": "ionic serve --external",
