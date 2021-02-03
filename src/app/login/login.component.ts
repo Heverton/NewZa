@@ -5,7 +5,6 @@ import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/auth/auth.service';
 import { Login } from './login';
 import { RegistroModalComponent } from './modal/registro.modal.component';
-// import { Auth, UserDetails, User } from "@ionic/cloud-angular";
 
 @Component({
   selector: 'app-login',
