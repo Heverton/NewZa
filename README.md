@@ -29,7 +29,7 @@ node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build
 
 # Ciclo de Geração (as vezes é preciso remover a pasta platforms)
 
-rm plataforms -R
+rm platforms -R
 
 ionic cordova build android --prod --release --verbose --max_old_space_size=40960
     ng run app:ionic-cordova-build:production --platform=android
@@ -45,11 +45,11 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore newza-android-s
 
 ## sudo apt install zipalign -y
 
-zipalign -v 4 app-release-unsigned.apk app-release-1.1.0.apk
+zipalign -v 4 app-release-unsigned.apk app-release-1.2.0.apk
 
 ## sudo apt install apksigner -y
 
-apksigner verify app-release-1.1.0.apk
+apksigner verify app-release-1.2.0.apk
 
 https://ionicframework.com/docs/v3/intro/deploying/
 

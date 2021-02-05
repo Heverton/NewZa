@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   endpoints: {
-    api: `http://hiroku.com/newza-api`,
+    api: `https://newza-backend.herokuapp.com/newza-api`,
   }
 };
