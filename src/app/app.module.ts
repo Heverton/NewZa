@@ -21,7 +21,7 @@ import { LoginModule } from './login/login.module';
     AppRoutingModule,
     ApiModule,
     CommonModule,
-    LoginModule
+    LoginModule,
   ],
   providers: [
     StatusBar,

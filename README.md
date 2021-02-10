@@ -53,6 +53,9 @@ apksigner verify app-release-1.2.0.apk
 
 https://ionicframework.com/docs/v3/intro/deploying/
 
+### Dica install
+ionic integrations disable capacitor
+
 
 
 

@@ -1,6 +1,6 @@
 {
   "name": "newza",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "Silva Cruz",
   "description": "Newza Gestão",
   "homepage": "https://newza.com.br",
@@ -23,15 +23,20 @@
     "@angular/router": "~11.1.1",
     "@capacitor/android": "^2.4.0",
     "@capacitor/core": "2.4.0",
+    "@ionic-native/admob-free": "^5.31.1",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/google-plus": "^5.28.0",
+    "@ionic-native/file": "^5.31.1",
+    "@ionic-native/file-opener": "^5.31.1",
+    "@ionic-native/google-plus": "^5.31.1",
     "@ionic-native/local-notifications": "^5.30.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "cordova-android": "9.0.0",
+    "cordova-plugin-admob-free": "^0.27.0",
     "cordova-plugin-console": "^1.1.0",
     "jwt-decode": "^3.0.0",
+    "pdfmake": "^0.1.70",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
@@ -48,6 +53,16 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "cordova-admob-sdk": "^0.24.1",
+    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-file-opener2": "^3.0.5",
+    "cordova-plugin-ionic-keyboard": "^2.0.5",
+    "cordova-plugin-ionic-webview": "^4.0.0",
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-whitelist": "1.3.3",
+    "cordova-promise-polyfill": "^0.0.2",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.2.3",
@@ -58,13 +73,7 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.1.3",
-    "cordova-plugin-whitelist": "1.3.3",
-    "cordova-plugin-statusbar": "2.4.2",
-    "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-splashscreen": "5.0.2",
-    "cordova-plugin-ionic-webview": "^4.0.0",
-    "cordova-plugin-ionic-keyboard": "^2.0.5"
+    "typescript": "~4.1.3"
   },
   "cordova": {
     "plugins": {
@@ -73,7 +82,12 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-admob-free": {
+        "ADMOB_APP_ID": "ca-app-pub-2442768927794927~8058339253"
+      },
+      "cordova-plugin-file-opener2": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "android"

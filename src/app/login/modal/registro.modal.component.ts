@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
+import { Inquilino } from 'src/app/inquilino/Inquilino';
+import { InquilinoService } from 'src/app/shared/api/inquilino.service';
 import { LoginService } from 'src/app/shared/api/login.service';
+import { MensagemComponente } from 'src/app/shared/components/mensagem.component';
 import { Login } from '../login';
 
 @Component({
@@ -14,13 +17,15 @@ export class RegistroModalComponent implements OnInit {
   @Input() item: Login;
   formb: FormGroup;
 
-  constructor(private service: LoginService, 
+  constructor(private serviceLogin: LoginService,
+              private serviceInqui: InquilinoService,
               private formBuilder: FormBuilder,
-              private alertController: AlertController,
+              private mensagem: MensagemComponente,
               private md: ModalController) {
 
     this.formb = this.formBuilder.group({
       id: [],
+      cpf: ['', Validators.required],
       login: ['', Validators.required],
       senha: ['', Validators.required],
       confirmarSenha: ['', [Validators.required, this.validarSenhas]],
@@ -29,79 +34,54 @@ export class RegistroModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.formb.patchValue(this.item);
-    console.log('this.item', this.item);
   }
 
   salvar(): void {
-    this.preparDados();
-    this.service.inserir(this.item).subscribe(async result => {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Sucesso',
-        message: 'Realizado com sucesso.',
-        buttons: ['OK']
-      });
-      await alert.present();
-      setTimeout(() => { 
-        alert.dismiss(); 
-        //  Retorna para o que criou a modal
-        this.md.dismiss({'dismissed': true });
-      }, 1200);
-    }, err => {
-      console.log('Erro', err);
-    });
-  }
+    const dados = this.formb.value;
+    console.log('Criar regra de validação', this.formb.valid);
 
-  editar(): void {
-    this.preparDados();
-    this.service.editar(this.item).subscribe(async result => {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Sucesso',
-        message: 'Realizado com sucesso.',
-        buttons: ['OK']
-      });
-      await alert.present();
-      setTimeout(() => { 
-        alert.dismiss(); 
-        //  Retorna para o que criou a modal
-        this.md.dismiss({'dismissed': true });
-      }, 1200);
-    }, err => {
-      console.log('Erro', err);
-    });
-  }
+    //TODO https://www.youtube.com/watch?v=mlGehHg4oSA&ab_channel=SimonGrimm
+    // https://forum.ionicframework.com/t/ionic-4-create-pdf/153975/5
 
-  excluir(): void {
-    this.preparDados();
-    this.service.excluir(this.item).subscribe(async result => {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Sucesso',
-        message: 'Realizado com sucesso.',
-        buttons: ['OK']
+    if (this.formb.valid) {
+      this.serviceInqui.buscarPorParamCpf(dados.cpf).subscribe(result1 => {
+        result1.login.senha = dados.senha;
+        this.serviceLogin.editar(result1.login).subscribe(result => {
+          this.mensagem.presentToastSucess('Sucesso: Alterado com sucesso.', result);
+          this.close();
+        }, err => {
+          this.mensagem.presentToast('Erro: ' + err, err);
+          this.close();
+        });
+      }, err => {
+        this.mensagem.presentToast('Erro: ' + err, err);
+        this.close();
       });
-      await alert.present();
-      setTimeout(() => { 
-        alert.dismiss(); 
-        //  Retorna para o que criou a modal
-        this.md.dismiss({'dismissed': true });
-      }, 1200);
-    }, err => {
-      console.log('Erro', err);
-    });
+    }
   }
 
   voltar(): void {
     //  Retorna para o que criou a modal
-    this.md.dismiss({'dismissed': true });
+    this.close(0);
   }
 
-  private preparDados(): void {
-    const dados = this.formb.value;
-    this.item.id = dados.id;
-    this.item.nome = dados.login;
+  private close(count?: number){
+    if (count) {
+      count = 1200;
+    }
+    setTimeout(() => {
+      //  Retorna para o que criou a modal
+      this.md.dismiss({'dismissed': true });
+    }, count);
   }
+
+  private validarSenhas = (confirmarSenha: FormControl): ValidatorFn => {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const isIguais = confirmarSenha.value === control.value.senha;
+      return (isIguais) ? null : { 'A senha ': confirmarSenha.value + ' diferente de ' + this.formb.value.senha };
+    };
+  }
+
 
   // https://cursos.alura.com.br/forum/topico-validator-de-confirmar-senha-77252
   // validarSenhas = (confirmarSenha: FormControl): ValidatorFn => {
@@ -124,13 +104,5 @@ export class RegistroModalComponent implements OnInit {
   //   }
   //   return null;
   // }
-
-  validarSenhas = (confirmarSenha: FormControl): ValidatorFn => {
-    return (control: AbstractControl): { [key: string]: any } => {
-      debugger
-      const isIguais = confirmarSenha.value === control.value.senha;
-      return (isIguais) ? null : { 'A senha ': confirmarSenha.value + ' diferente de ' + this.formb.value.senha };
-    };
-  }
 
 }

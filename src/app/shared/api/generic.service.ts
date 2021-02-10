@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export abstract class GenericService<T> {
     protected header = new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8'});
     protected api = environment.endpoints.api;
+    protected debugger = !environment.production;
     protected params: HttpParams = new HttpParams();
 
     constructor(public http: HttpClient, public base: String){ }

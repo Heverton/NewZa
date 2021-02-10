@@ -38,6 +38,8 @@
         <ion-button name="editar"  *ngIf="isAdministrador" [disabled]="!formb.valid" color="primary" type="button" (click)="editar()">Editar</ion-button>
         <ion-button name="excluir" *ngIf="isAdministrador" [disabled]="!formb.valid" color="primary" type="button" (click)="excluir()">Excluir</ion-button>
         <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
+
+        <button ion-button (click)='imprimirLeitura()' >Generate PDF</button>
       </ion-item>
     </form>
 

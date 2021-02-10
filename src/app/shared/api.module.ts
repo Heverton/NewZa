@@ -11,26 +11,35 @@ import { AuthService } from './auth/auth.service';
 import { RoleGuardService } from './auth/role-guard.service';
 import { Interceptor } from './auth/interceptor';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { MensagemComponente } from './components/mensagem.component';
+import { AdmobService } from './api/admob.service';
+import { AdMobFreeBanner } from '@ionic-native/admob-free/ngx';
 
 @NgModule({
     imports: [
       HttpClientModule,
     ],
-    declarations: [ ],
+    declarations: [
+    ],
     providers: [
-        InquilinoService,
-        AvisoService,
-        EnergiaService,
-        ImovelService,
-        InquilinoService,
-        LoginService,
-        AuthService,
-        AuthGuardService,
-        RoleGuardService,
-        EstadoCivilService,
-        LocalNotifications,
-        {provide: String, useValue: ''},
-        { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+      AdMobFreeBanner,
+
+      InquilinoService,
+      AvisoService,
+      EnergiaService,
+      ImovelService,
+      InquilinoService,
+      LoginService,
+      AuthService,
+      AuthGuardService,
+      RoleGuardService,
+      EstadoCivilService,
+      AdmobService,
+
+      LocalNotifications,
+      MensagemComponente,
+      {provide: String, useValue: ''},
+      { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
     ]
   })
 export class ApiModule {

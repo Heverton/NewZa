@@ -6,7 +6,7 @@ import { Login } from 'src/app/login/login';
 @Injectable()
 export class LoginService extends GenericService<Login> {
 
-    constructor(http: HttpClient, service: String){
+    constructor(http: HttpClient, service: string){
         super(http, 'login');
         // Login OK
         // localStorage.setItem('token');

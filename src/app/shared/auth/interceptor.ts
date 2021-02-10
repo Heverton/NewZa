@@ -9,15 +9,14 @@ import {
 import { AuthService } from './auth.service';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { UsuarioLogado } from './usuario-logado';
 import { ToastController } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar';
+import { MensagemComponente } from '../components/mensagem.component';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
-    constructor(private auth: AuthService, private toastController: ToastController) {}
+    constructor(private auth: AuthService, private mensagem: MensagemComponente) {}
 
     // TODO https://itnext.io/handle-http-responses-with-httpinterceptor-and-toastr-in-angular-3e056759cb16
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -27,32 +26,22 @@ export class Interceptor implements HttpInterceptor {
         });
 
         return next.handle(request).pipe(
-            tap(evt => {
-                // console.log('Sucesso', evt);
-            }), catchError((err: any) => {
+            tap(evt => { }),
+            catchError((err: any) => {
                 if (err instanceof HttpErrorResponse) {
+                    if (err.status === 400) {
+                        this.mensagem.presentToast(err.status + ' ' + err.error[0] + ' ' + err?.error[1], err);
+                    }
                     if (err.status === 403) {
-                        this.presentToast(err.status + ' ' + err.error[0] + ' ' + err?.error[1])
+                        this.mensagem.presentToast(err.status + ' ' + err.error[0] + ' ' + err?.error[1], err);
+                    }
+                    if (err.status === 500) {
+                        this.mensagem.presentToast(err.status + ' ' + err.error[0] + ' ' + err?.error[1], err);
                     }
                 }
-                console.log('Erro geral', err);
+                // this.mensagem.presentToast('Erro indefinido:' + err.message, err);
                 return of(err);
             })
         );
-    }
-
-    async presentToast(mensagem: string) {
-        const toast = await this.toastController.create({
-          message: mensagem,
-          duration: 2000,
-          buttons: [
-            {
-              text: 'Close',
-              role: 'cancel',
-              handler: () => {}
-            }
-          ]
-        });
-        toast.present();
     }
 }

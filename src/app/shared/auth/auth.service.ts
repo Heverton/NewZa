@@ -1,9 +1,10 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Login } from 'src/app/login/login';
 import { GenericService } from '../api/generic.service';
+import { MensagemComponente } from '../components/mensagem.component';
 import { JwtRequest } from './jwt-request';
 import { UsuarioLogado } from './usuario-logado';
 
@@ -12,11 +13,9 @@ export class AuthService extends GenericService<JwtRequest> {
 
     private httpClient: HttpClient;
 
-    constructor(handler: HttpBackend, http: HttpClient, service: String, private router: Router){
+    constructor(handler: HttpBackend, http: HttpClient, service: string, private router: Router, private mensagem: MensagemComponente){
         super(http, 'autenticacao');
         this.httpClient = new HttpClient(handler);
-        // Login OK
-        // localStorage.setItem('token');
     }
 
     public isAuthenticated(): boolean {
@@ -34,8 +33,6 @@ export class AuthService extends GenericService<JwtRequest> {
     /**
      * Utilizar essa para fazer o primeiro login
      * https://stackoverflow.com/questions/46469349/how-to-make-an-angular-module-to-ignore-http-interceptor-added-in-a-core-module
-     * 
-     * @param dados 
      */
     public buscar(dados: JwtRequest): Observable<JwtRequest> {
         const body = JSON.stringify(dados);
@@ -49,11 +46,11 @@ export class AuthService extends GenericService<JwtRequest> {
         this.buscar(jwtr).subscribe((data) => {
             console.log(data);
             UsuarioLogado.setToken(data[1]['token'])
-            UsuarioLogado.setUsuarioLogado(JSON.stringify(data[0]))
+            UsuarioLogado.setUsuarioLogado(JSON.stringify(data[0]));
             this.router.navigate(['sis/abas/aviso']);
-        }, (error) => {
+        }, (error: HttpErrorResponse) => {
             this.clearStorage();
-            console.log(error);
+            this.mensagem.presentToast('Error: ' + error.status + ' ' + error.message, error);
         });
     }
 

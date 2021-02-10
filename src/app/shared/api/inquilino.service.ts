@@ -7,13 +7,17 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class InquilinoService extends GenericService<Inquilino> {
 
-    constructor(http: HttpClient, service: String){
+    constructor(http: HttpClient, service: string){
         super(http, 'inquilino');
     }
 
     public buscarPorCpf(dados: Inquilino): Observable<Inquilino> {
         const body = JSON.stringify(dados);
         return this.http.post<Inquilino>(`${this.api}/${this.base}/porCpf`, body, {headers: this.header});
+    }
+
+    public buscarPorParamCpf(cpf: string): Observable<Inquilino> {
+        return this.http.get<Inquilino>(`${this.api}/${this.base}/porCpf/${cpf}`, {headers: this.header});
     }
 
 //     /**

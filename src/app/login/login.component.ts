@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/auth/auth.service';
+import { MensagemComponente } from '../shared/components/mensagem.component';
 import { Login } from './login';
 import { RegistroModalComponent } from './modal/registro.modal.component';
 
@@ -20,13 +21,11 @@ export class LoginComponent {
   userData: any = {};
 
   // https://medium.com/@edigleyssonsilva/adding-google-sign-in-to-your-ionic-3-4-5-app-8ed81744e8ba
-  constructor(private router: Router, 
+  constructor(private mensagem: MensagemComponente,
               private auth: AuthService, 
               private googlePlus: GooglePlus,
               private md: ModalController){
 
-    this.email = 'cliente';
-    this.senha = '123';
   }
 
   login(): void{
@@ -48,27 +47,13 @@ export class LoginComponent {
     this.googlePlus.login({}).then(result => {
         this.userData = result;
         this.estaAutenticado = true;
-    }).catch(err => this.userData = `Error ${JSON.stringify(err)}`);
+    }).catch(err => {
+      this.mensagem.presentToast('Error' + JSON.stringify(err), err);
+      this.userData = 'Error' + JSON.stringify(err);
+    });
   }
 
-  logout(): void{
-    // this.auth.logout();
-  }
-
-  // cadastrar(): void{
-  //   //   let dados: UserDetails = {
-  //   //     'email': this.email,
-  //   //     'password': this.senha
-  //   //  };
-  //   //   this.auth.signup(dados).then(() => {
-  //   //     // USUÁRIO CRIADO - PODE SER ACESSADO COM this.user
-  //   //     console.log(this.user);
-  //   //   }, erro => {
-  //   //     // TRATAR O ERRO
-  //   //     console.log("Erro no cadastro");
-  //   //   });
-  // }
-  async cadastrar(itemmodal?: Login): Promise<void> {
+  async register(itemmodal?: Login): Promise<void> {
     itemmodal = (itemmodal == null)? new Login() : itemmodal;
     const modal = await this.md.create({
       component: RegistroModalComponent,
