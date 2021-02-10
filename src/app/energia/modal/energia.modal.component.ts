@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AlertController, ModalController, Platform } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Inquilino } from 'src/app/inquilino/Inquilino';
 import { EnergiaService } from 'src/app/shared/api/energia.service';
 import { InquilinoService } from 'src/app/shared/api/inquilino.service';
