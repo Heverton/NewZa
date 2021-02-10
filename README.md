@@ -29,6 +29,7 @@ node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build
 
 # Ciclo de Geração (as vezes é preciso remover a pasta platforms)
 
+# altere a versão do config.xml e packge.json
 rm platforms -R
 
 ionic cordova build android --prod --release --verbose --max_old_space_size=40960
@@ -45,7 +46,7 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore newza-android-s
 
 ## sudo apt install zipalign -y
 
-zipalign -v 4 app-release-unsigned.apk app-release-1.2.0.apk
+zipalign -v 4 app-release-unsigned.apk app-release-1.3.0.apk
 
 ## sudo apt install apksigner -y
 
