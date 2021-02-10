@@ -6,7 +6,7 @@ import { Energia } from 'src/app/energia/energia';
 @Injectable()
 export class EnergiaService extends GenericService<Energia> {
 
-    constructor(http: HttpClient, service: String){
+    constructor(http: HttpClient){
         super(http, 'energia');
     }
 }

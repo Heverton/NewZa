@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class InquilinoService extends GenericService<Inquilino> {
 
-    constructor(http: HttpClient, service: string){
+    constructor(http: HttpClient){
         super(http, 'inquilino');
     }
 
