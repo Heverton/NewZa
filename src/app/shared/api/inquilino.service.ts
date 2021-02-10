@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class InquilinoService extends GenericService<Inquilino> {
 
     constructor(http: HttpClient){
-        super(http, 'inquilino');
+        super(http);
+        super.base = 'inquilino';
     }
 
     public buscarPorCpf(dados: Inquilino): Observable<Inquilino> {

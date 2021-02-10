@@ -7,8 +7,7 @@ import { Login } from 'src/app/login/login';
 export class LoginService extends GenericService<Login> {
 
     constructor(http: HttpClient){
-        super(http, 'login');
-        // Login OK
-        // localStorage.setItem('token');
+        super(http);
+        super.base = 'login';
     }
 }

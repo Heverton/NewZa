@@ -7,6 +7,7 @@ import { Energia } from 'src/app/energia/energia';
 export class EnergiaService extends GenericService<Energia> {
 
     constructor(http: HttpClient){
-        super(http, 'energia');
+        super(http);
+        super.base = 'energia';
     }
 }

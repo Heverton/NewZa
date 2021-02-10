@@ -13,8 +13,9 @@ export abstract class GenericService<T> {
     protected api = environment.endpoints.api;
     protected debugger = !environment.production;
     protected params: HttpParams = new HttpParams();
+    protected base: string;
 
-    constructor(protected http: HttpClient, protected base: string){ }
+    constructor(protected http: HttpClient){ }
 
     public inserir(dados: T): Observable<T[]> {
         const body = JSON.stringify(dados);

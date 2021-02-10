@@ -7,6 +7,7 @@ import { Imovel } from 'src/app/imovel/imovel';
 export class ImovelService extends GenericService<Imovel> {
 
     constructor(http: HttpClient){
-        super(http, 'imovel');
+        super(http);
+        super.base = 'imovel';
     }
 }

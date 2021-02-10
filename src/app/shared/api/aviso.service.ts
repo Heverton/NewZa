@@ -7,6 +7,7 @@ import { GenericService } from './generic.service';
 export class AvisoService extends GenericService<Aviso> {
 
     constructor(http: HttpClient){
-        super(http, 'aviso');
+        super(http);
+        super.base = 'aviso';
     }
 }

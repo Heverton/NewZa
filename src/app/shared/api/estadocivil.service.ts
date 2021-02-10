@@ -7,6 +7,7 @@ import { EstadoCivil } from 'src/app/inquilino/estadocivil';
 export class EstadoCivilService extends GenericService<EstadoCivil> {
 
     constructor(http: HttpClient){
-        super(http, 'estadocivil');
+        super(http);
+        super.base = 'estadocivil';
     }
 }
