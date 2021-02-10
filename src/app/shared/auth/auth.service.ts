@@ -14,7 +14,8 @@ export class AuthService extends GenericService<JwtRequest> {
     private httpClient: HttpClient;
 
     constructor(handler: HttpBackend, http: HttpClient, private router: Router, private mensagem: MensagemComponente){
-        super(http, 'autenticacao');
+        super(http);
+        super.base = 'autenticacao';
         this.httpClient = new HttpClient(handler);
     }
 
