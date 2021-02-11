@@ -16,10 +16,7 @@ altere a versão do config.xml e packge.json
 
 rm www -R
 
-ionic build www
-ionic cap add android --verbose
-ionic cap copy
-ionic cap open android
+ionic build www | ionic cap add android --verbose | ionic cap copy | ionic cap open android
 
 https://ionicframework.com/docs/cli/commands/capacitor-run
 https://ionicframework.com/docs/cli/livereload
@@ -46,11 +43,11 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore newza-android-s
 
 ## sudo apt install zipalign -y
 
-zipalign -v 4 app-release-unsigned.apk app-release-1.3.0.apk
+zipalign -v 4 app-release-unsigned.apk app-release-1.4.0.apk
 
 ## sudo apt install apksigner -y
 
-apksigner verify app-release-1.2.0.apk
+apksigner verify app-release-1.4.0.apk
 
 https://ionicframework.com/docs/v3/intro/deploying/
 

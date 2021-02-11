@@ -14,6 +14,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { MensagemComponente } from './components/mensagem.component';
 import { AdmobService } from './api/admob.service';
 import { AdMobFreeBanner } from '@ionic-native/admob-free/ngx';
+import { RelatorioService } from './api/relatorio.service';
 
 @NgModule({
     imports: [
@@ -23,7 +24,7 @@ import { AdMobFreeBanner } from '@ionic-native/admob-free/ngx';
     ],
     providers: [
       AdMobFreeBanner,
-
+      AdmobService,
       InquilinoService,
       AvisoService,
       EnergiaService,
@@ -34,8 +35,7 @@ import { AdMobFreeBanner } from '@ionic-native/admob-free/ngx';
       AuthGuardService,
       RoleGuardService,
       EstadoCivilService,
-      AdmobService,
-
+      RelatorioService,
       LocalNotifications,
       MensagemComponente,
       {provide: String, useValue: ''},

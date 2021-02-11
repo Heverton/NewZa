@@ -1,11 +1,11 @@
 import { Role } from "./role";
 
 export class UsuarioLogado {
-    
+
     public static getToken(): string{
         return localStorage.getItem('access_token');
     }
-   
+
     public static getUsuarioLogado(): string{
         return JSON.parse(localStorage.getItem('access_token_perfil'));
     }

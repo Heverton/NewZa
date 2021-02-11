@@ -14,11 +14,11 @@ export class EnergiaComponent implements OnInit {
 
   itens = new Array<Energia>();
   fatorMultiplicador = 0.90;
-  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador(); 
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador();
 
-  constructor(private service: EnergiaService, 
+  constructor(private service: EnergiaService,
               private md: ModalController) {}
-  
+
   ngOnInit(): void {
     if (UsuarioLogado.getUsuarioLogadoPerfilCliente()) {
       this.service.buscarId(UsuarioLogado.getUsuarioLogadoId()).subscribe(result => {
