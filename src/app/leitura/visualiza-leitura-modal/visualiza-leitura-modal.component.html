@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title >Lista de Leituras</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-card-header>
+    <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
+    <ion-card *ngFor="let item of leituras">
+        <ion-item>
+            <ion-card-title>Data da leitura: {{item.dataleitura | date: 'dd/MM/yyyy'}}</ion-card-title>
+            <ion-card-subtitle>Número Leitura: {{item.numeroleitura}}</ion-card-subtitle>
+        </ion-item>
+    </ion-card>
+  </ion-card-header>
+</ion-card>

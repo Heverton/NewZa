@@ -14,9 +14,9 @@ export class ImovelModalComponent implements OnInit {
 
   @Input() item: Imovel;
   formb: FormGroup;
-  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador(); 
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador();
 
-  constructor(private service: ImovelService, 
+  constructor(private service: ImovelService,
               private formBuilder: FormBuilder,
               private alertController: AlertController,
               private md: ModalController) {
@@ -33,7 +33,6 @@ export class ImovelModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.formb.patchValue(this.item);
-    console.log('this.item', this.item);
   }
 
   salvar(): void {
@@ -46,8 +45,8 @@ export class ImovelModalComponent implements OnInit {
         buttons: ['OK']
       });
       await alert.present();
-      setTimeout(() => { 
-        alert.dismiss(); 
+      setTimeout(() => {
+        alert.dismiss();
         //  Retorna para o que criou a modal
         this.md.dismiss({'dismissed': true });
       }, 1200);

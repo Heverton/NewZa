@@ -40,7 +40,7 @@ export abstract class GenericService<T> {
         return this.http.get<T[]>(`${this.api}/${this.base}`, {headers: this.header});
     }
 
-    public buscarId(id: Number): Observable<T[]> {
+    public buscarId(id: number): Observable<T[]> {
         return this.http.get<T[]>(`${this.api}/${this.base}/${id}`, {headers: this.header});
     }
 

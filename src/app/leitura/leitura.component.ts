@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { EnergiaService } from '../shared/api/energia.service';
+import { Inquilino } from '../inquilino/Inquilino';
+import { InquilinoService } from '../shared/api/inquilino.service';
 import { UsuarioLogado } from '../shared/auth/usuario-logado';
-import { Energia } from './energia';
-import { EnergiaModalComponent } from './modal/energia.modal.component';
+import { MedidorConsumo } from './medidor-consumo';
+import { LeituraModalComponent } from './modal/leitura.modal.component';
 
 @Component({
-  selector: 'app-energia',
-  templateUrl: 'energia.component.html',
-  styleUrls: ['energia.component.scss']
+  selector: 'app-leitura',
+  templateUrl: 'leitura.component.html',
+  styleUrls: ['leitura.component.scss']
 })
-export class EnergiaComponent implements OnInit {
+export class LeituraComponent implements OnInit {
 
-  itens = new Array<Energia>();
-  fatorMultiplicador = 0.90;
+  itens = new Array<Inquilino>();
   isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador();
 
-  constructor(private service: EnergiaService,
+  constructor(private service: InquilinoService,
               private md: ModalController) {}
 
   ngOnInit(): void {
@@ -30,10 +30,10 @@ export class EnergiaComponent implements OnInit {
       });
     }
   }
-  async ativaModal(itemmodal?: Energia): Promise<void> {
-    itemmodal = (itemmodal === undefined)? new Energia() : itemmodal;
+
+  async ativaModal(itemmodal: MedidorConsumo): Promise<void> {
     const modal = await this.md.create({
-      component: EnergiaModalComponent,
+      component: LeituraModalComponent,
       cssClass: 'modal-class',
       componentProps: {item: itemmodal},
       swipeToClose: true,
@@ -46,6 +46,18 @@ export class EnergiaComponent implements OnInit {
     if (dadosCloseModal) {
       this.ngOnInit();
     }
+  }
+
+  prepararMedidor(idTipo: number): MedidorConsumo {
+    let medidor = new MedidorConsumo();
+    this.itens.forEach(item => {
+      item.imovel.medidorConsumos.forEach(med => {
+        if (med.tipoMedidorConsumo.id === idTipo) {
+          medidor =  med;
+        }
+      });
+    });
+    return medidor;
   }
 
 }

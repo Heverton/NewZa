@@ -22,7 +22,7 @@ export class UsuarioLogado {
         return (UsuarioLogado.getUsuarioLogadoPerfil() !== Role.CLIENTE);
     }
 
-    public static getUsuarioLogadoId(): Number{
+    public static getUsuarioLogadoId(): number{
         return Number(UsuarioLogado.getUsuarioLogado()['id']);
     }
 
