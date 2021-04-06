@@ -15,4 +15,8 @@ export class LeituraService extends GenericService<Leitura> {
     public buscarIdMedidor(id: number): Observable<Leitura[]> {
         return this.http.get<Leitura[]>(`${this.api}/${this.base}/medidor/${id}`, {headers: this.header});
     }
+
+    public buscarUltimaLeitura(id: number): Observable<Leitura> {
+        return this.http.get<Leitura>(`${this.api}/${this.base}/ultimaleitura/${id}`, {headers: this.header});
+    }
 }

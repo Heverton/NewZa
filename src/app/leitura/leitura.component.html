@@ -11,7 +11,7 @@
         <ion-card-title>{{item.nome}}</ion-card-title>
         <ion-card-subtitle>{{item.telefone}}</ion-card-subtitle>
         <!-- Leitura Click -->
-        <ion-card-subtitle> Registro de:
+        <ion-card-subtitle> Registro do mês: {{dataAtual | date: 'MM/yyyy'}}
           <ion-button name="agua" *ngIf="isAdministrador" color="primary" type="button" (click)="ativaModal(prepararMedidor(1))" >Água</ion-button>
           <ion-button name="luz" *ngIf="isAdministrador" color="primary" type="button" (click)="ativaModal(prepararMedidor(2))" >Luz</ion-button>
         </ion-card-subtitle>

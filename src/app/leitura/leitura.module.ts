@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeituraRoutingModule } from './leitura-routing.module';
 import { LeituraComponent } from './leitura.component';
-import { LeituraModalComponent } from './modal/leitura.modal.component';
+import { LeituraModalComponent } from './leitura/leitura.modal.component';
 import { VisualizaLeituraModalComponent } from './visualiza-leitura-modal/visualiza-leitura-modal.component';
 
 @NgModule({

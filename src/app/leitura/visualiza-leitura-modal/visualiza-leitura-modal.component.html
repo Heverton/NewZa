@@ -4,14 +4,25 @@
       <ion-title >Lista de Leituras</ion-title>
     </ion-toolbar>
   </ion-header>
+</ion-card>
   
-  <ion-card-header>
-    <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
-    <ion-card *ngFor="let item of leituras">
+<ion-content>
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    <ion-item>
+      <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
+    </ion-item>
+    <ion-card *ngFor="let item of valorConsumo">
         <ion-item>
-            <ion-card-title>Data da leitura: {{item.dataleitura | date: 'dd/MM/yyyy'}}</ion-card-title>
-            <ion-card-subtitle>Número Leitura: {{item.numeroleitura}}</ion-card-subtitle>
+            <ion-card-subtitle>Data da leitura: {{item.dataLeitura | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+         </ion-item>
+         <ion-item>
+            <ion-card-subtitle>Quantidade: {{item.quantidade}} {{item.unidadeMedida}}</ion-card-subtitle>
+        </ion-item>
+        <ion-item>
+            <ion-card-subtitle>Valor da conta: {{item.valor | currency:'BRL':true:'1.2-2'}}</ion-card-subtitle>
         </ion-item>
     </ion-card>
-  </ion-card-header>
-</ion-card>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

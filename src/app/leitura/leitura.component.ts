@@ -4,7 +4,7 @@ import { Inquilino } from '../inquilino/Inquilino';
 import { InquilinoService } from '../shared/api/inquilino.service';
 import { UsuarioLogado } from '../shared/auth/usuario-logado';
 import { MedidorConsumo } from './medidor-consumo';
-import { LeituraModalComponent } from './modal/leitura.modal.component';
+import { LeituraModalComponent } from './leitura/leitura.modal.component';
 
 @Component({
   selector: 'app-leitura',
@@ -15,6 +15,7 @@ export class LeituraComponent implements OnInit {
 
   itens = new Array<Inquilino>();
   isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador();
+  dataAtual = new Date();
 
   constructor(private service: InquilinoService,
               private md: ModalController) {}

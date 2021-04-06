@@ -1,4 +1,4 @@
-import { TipoMedidorConsumo } from './tipo-medidor-consumo';
+import { TipoMedidorConsumo } from './valor-consumo';
 
 export class MedidorConsumo {
     id: number;
