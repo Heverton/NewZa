@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LeituraService } from 'src/app/shared/api/leitura.service';
+import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
 import { Leitura } from '../leitura';
 import { MedidorConsumo } from '../medidor-consumo';
 import { ValorConsumo } from '../tipo-medidor-consumo';
@@ -17,56 +18,79 @@ export class VisualizaLeituraModalComponent implements OnInit {
   @Input() item: MedidorConsumo;
   leituras = new Array<Leitura>();
   valorConsumo = new Array<ValorConsumo>();
+  isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador();
 
   constructor(private service: LeituraService, private md: ModalController) {
   }
 
-  ngOnInit(): void {
-    this.service.buscarIdMedidor(this.item.id).subscribe(result => {
-      this.leituras = result;
+  static realizarCalculo(leituras: Array<Leitura>): Array<ValorConsumo>{
+    const valorConsumo = new Array<ValorConsumo>();
 
-      this.leituras.sort((a: Leitura, b: Leitura) => {
-        if (a.dataleitura > b.dataleitura) { return 1; }
-        if (a.dataleitura < b.dataleitura) { return -1; }
-        return 0;
-      });
-
-      let leituraAnterior: Leitura;
-      let leituraAtual: Leitura;
-
-      for (let i = 0; i <= this.leituras.length; i++){
-        if (i === 0) {
-          leituraAtual = this.leituras[i];
-          const total = leituraAtual.numeroleitura;
-          this.valorConsumo.push(this.prepararCalculo(leituraAtual, total));
-        } else {
-          const j = i - 1;
-          leituraAnterior = this.leituras[j];
-          leituraAtual = this.leituras[i];
-          const total = leituraAtual.numeroleitura - leituraAnterior.numeroleitura;
-          this.valorConsumo.push(this.prepararCalculo(leituraAtual, total));
-        }
-      }
+    leituras.sort((a: Leitura, b: Leitura) => {
+      if (a.dataleitura > b.dataleitura) { return 1; }
+      if (a.dataleitura < b.dataleitura) { return -1; }
+      return 0;
     });
+
+    let leituraAnterior: Leitura;
+    let leituraAtual: Leitura;
+
+    for (let i = 0; i < leituras.length; i++){
+      if (i === 0) {
+        leituraAtual = leituras[i];
+        leituraAnterior = new Leitura();
+        leituraAnterior.numeroleitura = 0;
+        const total = leituraAtual.numeroleitura;
+        valorConsumo.push(this.prepararCalculo(leituraAtual, leituraAnterior, total));
+      } else {
+        const j = i - 1;
+        leituraAnterior = leituras[j];
+        leituraAtual = leituras[i];
+        const total = leituraAtual.numeroleitura - leituraAnterior.numeroleitura;
+        valorConsumo.push(this.prepararCalculo(leituraAtual, leituraAnterior, total));
+      }
+    }
+
+    return valorConsumo;
   }
 
-  private prepararCalculo(leitura: Leitura, total: number): ValorConsumo {
-
+  static prepararCalculo(leituraAtual: Leitura, leituraAnterior: Leitura, total: number): ValorConsumo {
     const valorConsumo = new ValorConsumo();
-    valorConsumo.dataLeitura = leitura.dataleitura;
-    valorConsumo.medidor = leitura.medidorConsumo;
+
+    valorConsumo.numeroAtual = leituraAtual.numeroleitura;
+    valorConsumo.numeroAnterior = leituraAnterior.numeroleitura;
+
+    valorConsumo.dataLeituraAtual = leituraAtual.dataleitura;
+    valorConsumo.dataLeituraAnterir = leituraAnterior.dataleitura;
+
+    valorConsumo.medidor = leituraAtual.medidorConsumo;
     valorConsumo.quantidade = total;
 
-    if (this.item.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
+    if (leituraAtual.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
       valorConsumo.unidadeMedida = 'Kw';
       valorConsumo.valor = new TipoMedidorConsumo().calculoLuz(total);
-    } else if (this.item.tipoMedidorConsumo.id === TipoMedidorEnum.AGUA) {
+    } else if (leituraAtual.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.AGUA) {
       valorConsumo.unidadeMedida = 'M³';
       valorConsumo.valor = new TipoMedidorConsumo().calculoAgua(total);
     }
 
     return valorConsumo;
   }
+
+  ngOnInit(): void {
+    this.service.buscarIdMedidor(this.item.id).subscribe(result => {
+      this.leituras = result;
+      this.valorConsumo = VisualizaLeituraModalComponent.realizarCalculo(this.leituras);
+    });
+  }
+
+
+  editar(): void {
+  }
+
+  excluir(): void {
+  }
+
 
   async voltar(){
     //  Retorna para o que criou a modal

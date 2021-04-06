@@ -22,6 +22,11 @@
         <ion-item>
             <ion-card-subtitle>Valor da conta: {{item.valor | currency:'BRL':true:'1.2-2'}}</ion-card-subtitle>
         </ion-item>
+
+        <ion-item>
+          <ion-button name="editar"  *ngIf="isAdministrador" color="primary" type="button" (click)="editar()">Editar</ion-button>
+          <ion-button name="excluir" *ngIf="isAdministrador" color="primary" type="button" (click)="excluir">Excluir</ion-button>
+        </ion-item>
     </ion-card>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

@@ -8,6 +8,8 @@ import { RelatorioService } from '../../shared/api/relatorio.service';
 import { UsuarioLogado } from '../../shared/auth/usuario-logado';
 import { Leitura } from '../leitura';
 import { MedidorConsumo } from '../medidor-consumo';
+import { ValorConsumo } from '../tipo-medidor-consumo';
+import { TipoMedidorEnum } from '../tipo-medidor-enum';
 import { VisualizaLeituraModalComponent } from '../visualiza-leitura-modal/visualiza-leitura-modal.component';
 
 @Component({
@@ -64,21 +66,21 @@ export class LeituraModalComponent implements OnInit {
   }
 
   editar(): void {
-    this.preparDados();
-    this.service.editar(this.leitura).subscribe(async result => {
-      this.action();
-    }, err => {
-      console.log('Erro', err);
-    });
+    // this.preparDados();
+    // this.service.editar(this.leitura).subscribe(async result => {
+    //   this.action();
+    // }, err => {
+    //   console.log('Erro', err);
+    // });
   }
 
   excluir(): void {
-    this.preparDados();
-    this.service.excluir(this.leitura).subscribe(async result => {
-      this.action();
-    }, err => {
-      console.log('Erro', err);
-    });
+    // this.preparDados();
+    // this.service.excluir(this.leitura).subscribe(async result => {
+    //   this.action();
+    // }, err => {
+    //   console.log('Erro', err);
+    // });
   }
 
   voltar(): void {
@@ -127,31 +129,40 @@ export class LeituraModalComponent implements OnInit {
   // https://medium.com/@rakeshuce1990/ionic-how-to-create-pdf-file-with-pdfmake-step-by-step-75b25aa541a4
   imprimirLeitura(): void {
 
-    this.relatorioService.inserirHeader('Leitura da Leitura');
-    this.relatorioService.inserirSubHeader('');
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
-    const medidasDasColuna = [100, '*', '*', '*', '*'];
-    const nomeColunas = ['Mês', 'Número anterior:', 'Número atual:', 'Diferença', 'Total:'];
+    this.service.buscarIdMedidor(this.leitura.medidorConsumo.id).subscribe(result => {
+      const valorConsumo = VisualizaLeituraModalComponent.realizarCalculo(result);
 
-    const dadosColunas = [];
-    dadosColunas.push(['Janeiro', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Fevereiro', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Março', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Abril', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Maio', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Junho', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Julho', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Agosto', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Setembro', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Novembro', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Outubro', '123123.2', '21212.3', '121212.3', 'R$:']);
-    dadosColunas.push(['Dezembro', '123123.2', '21212.3', '121212.3', 'R$:']);
+      if (this.leitura.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.AGUA) {
+        this.relatorioService.inserirHeader('Relatório de leitura de Água');
+      } else if (this.leitura.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
+        this.relatorioService.inserirHeader('Relatório de leitura de Energia');
+      }
 
-    this.relatorioService.inserirTabela(medidasDasColuna, nomeColunas, dadosColunas);
-    this.relatorioService.inserirSubHeader2('Observação:');
-    this.relatorioService.inserirSubHeader3('A leitura será realizada.');
+      this.relatorioService.inserirSubHeader('');
 
-    this.relatorioService.imprimirRelatorio();
+      const medidasDasColuna = [100, '*', '*', '*', '*'];
+      const nomeColunas = ['Mês', 'Número anterior:', 'Número atual:', 'Diferença', 'Total:'];
+
+      const dadosColunas = [];
+
+      valorConsumo.forEach(dados => {
+
+        dadosColunas.push([monthNames[new Date(dados.dataLeituraAtual).getMonth()], dados.numeroAnterior, dados.numeroAtual,
+          dados.quantidade + ' ' + dados.unidadeMedida, 'R$: ' + dados.valor]);
+
+      });
+
+      this.relatorioService.inserirTabela(medidasDasColuna, nomeColunas, dadosColunas);
+      this.relatorioService.inserirSubHeader2('Observação:');
+      this.relatorioService.inserirSubHeader3('');
+
+      this.relatorioService.imprimirRelatorio();
+    });
+
 
   }
 }

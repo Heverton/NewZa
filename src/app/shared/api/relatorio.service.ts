@@ -11,6 +11,7 @@ export class RelatorioService {
   private pdf = [];
 
   inserirHeader(dados: string){
+    this.pdf = [];
     this.pdf.push({text: dados, style: 'header'});
   }
 
@@ -38,6 +39,7 @@ export class RelatorioService {
   }
 
   imprimirRelatorio(): void {
+
     const dd = {
       content: this.pdf,
       styles: this.configurarStyleRelatorio(),

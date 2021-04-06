@@ -3,7 +3,10 @@ import { MedidorConsumo } from './medidor-consumo';
 export class ValorConsumo {
     medidor: MedidorConsumo;
     unidadeMedida: string;
-    dataLeitura: Date;
+    dataLeituraAnterir: Date;
+    dataLeituraAtual: Date;
+    numeroAnterior: number;
+    numeroAtual: number;
     quantidade: number;
     valor: number;
 }
