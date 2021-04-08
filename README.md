@@ -34,7 +34,7 @@ Caso de erro:
 [ERROR] An error occurred while running subprocess cordova.
         cordova platform add android --save exited with exit code 1.
 
-Solução: sudo rm platforms -R | cordova platform add ios
+Solução: sudo rm platforms -R | cordova platform add android | cordova platform add ios
 
 Solução 2:
 Removed android platform (ionic cordova platform remove android)
@@ -52,11 +52,18 @@ https://github.com/angular/angular-cli/issues/16868
 
 TESTE
 npm run build
+
+Solução 4:
+https://stackoverflow.com/questions/39705491/error-source-path-does-not-exist-resources-android-icon-drawable-hdpi-icon-png
+
+ionic integrations enable cordova --add
+
+cordova clean
 ------------------------
 
-ionic cordova build android --prod --release --verbose --max_old_space_size=40960 --verbose
-
 ng run app:ionic-cordova-build:production --platform=android
+
+ionic cordova build android --prod --release --max_old_space_size=40960 
 
 # Assinar versão do APK
 cp /home/heverton/Projetos/NewZaWorkspace/newza-frontend/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk /home/heverton/Projetos/NewZaWorkspace/newza-backend/src/main/resources/release
@@ -67,13 +74,13 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore newza-android-s
 
 ## sudo apt install zipalign -y
 
-zipalign -v 4 app-release-unsigned.apk app-release-1.5.0.apk
+zipalign -v 4 app-release-unsigned.apk app-release-1.6.0.apk
 
 rm app-release-unsigned.apk
 
 ## sudo apt install apksigner -y
 
-apksigner verify app-release-1.5.0.apk
+apksigner verify app-release-1.6.0.apk
 
 https://ionicframework.com/docs/v3/intro/deploying/
 
