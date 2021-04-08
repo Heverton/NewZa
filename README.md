@@ -56,6 +56,9 @@ npm run build
 Solução 4:
 https://stackoverflow.com/questions/39705491/error-source-path-does-not-exist-resources-android-icon-drawable-hdpi-icon-png
 
+Solução 5:
+https://stackoverflow.com/questions/20266951/no-java-files-found-which-extend-cordovaactivity-when-use-cordova-build
+
 ionic integrations enable cordova --add
 
 cordova clean
@@ -74,13 +77,13 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore newza-android-s
 
 ## sudo apt install zipalign -y
 
-zipalign -v 4 app-release-unsigned.apk app-release-1.6.0.apk
+zipalign -v 4 app-release-unsigned.apk app-release-1.6.1.apk
 
 rm app-release-unsigned.apk
 
 ## sudo apt install apksigner -y
 
-apksigner verify app-release-1.6.0.apk
+apksigner verify app-release-1.6.1.apk
 
 https://ionicframework.com/docs/v3/intro/deploying/
 
