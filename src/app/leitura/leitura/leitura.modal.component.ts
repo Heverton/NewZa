@@ -135,9 +135,9 @@ export class LeituraModalComponent implements OnInit {
     this.service.buscarIdMedidor(this.leitura.medidorConsumo.id).subscribe(result => {
       const valorConsumo = VisualizaLeituraModalComponent.realizarCalculo(result);
 
-      if (this.leitura.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.AGUA) {
+      if (this.leitura.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.AGUA) {
         this.relatorioService.inserirHeader('Relatório de leitura de Água');
-      } else if (this.leitura.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.LUZ) {
+      } else if (this.leitura.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
         this.relatorioService.inserirHeader('Relatório de leitura de Energia');
       }
 

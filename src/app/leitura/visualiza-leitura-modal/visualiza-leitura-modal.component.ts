@@ -66,10 +66,10 @@ export class VisualizaLeituraModalComponent implements OnInit {
     valorConsumo.medidor = leituraAtual.medidorConsumo;
     valorConsumo.quantidade = total;
 
-    if (leituraAtual.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.LUZ) {
+    if (leituraAtual.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
       valorConsumo.unidadeMedida = 'Kw';
       valorConsumo.valor = new CalculoMedidorUtil().calculoLuz(total);
-    } else if (leituraAtual.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.AGUA) {
+    } else if (leituraAtual.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.AGUA) {
       valorConsumo.unidadeMedida = 'M³';
       valorConsumo.valor = new CalculoMedidorUtil().calculoAgua(total);
     }
