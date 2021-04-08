@@ -14,7 +14,7 @@
     </ion-item>
     <ion-card *ngFor="let item of valorConsumo">
         <ion-item>
-            <ion-card-subtitle>Data da leitura: {{item.dataLeitura | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+            <ion-card-subtitle>Data da leitura: {{item.dataLeituraAtual | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
          </ion-item>
          <ion-item>
             <ion-card-subtitle>Quantidade: {{item.quantidade}} {{item.unidadeMedida}}</ion-card-subtitle>

@@ -53,7 +53,7 @@ export class LeituraComponent implements OnInit {
     let medidor = new MedidorConsumo();
     this.itens.forEach(item => {
       item.imovel.medidorConsumos.forEach(med => {
-        if (med.tipoMedidorConsumo.id === idTipo) {
+        if (med.ValorConsumo.id === idTipo) {
           medidor =  med;
         }
       });

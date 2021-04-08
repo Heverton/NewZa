@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LeituraService } from 'src/app/shared/api/leitura.service';
 import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
+import { CalculoMedidorUtil } from '../calculo-medidor-util';
 import { Leitura } from '../leitura';
 import { MedidorConsumo } from '../medidor-consumo';
-import { ValorConsumo } from '../tipo-medidor-consumo';
 import { TipoMedidorEnum } from '../tipo-medidor-enum';
-import { TipoMedidorConsumo } from '../valor-consumo';
+import { ValorMedidorConsumo } from '../valor-medidor-consumo';
 
 @Component({
   selector: 'app-visualiza-leitura-modal',
@@ -17,14 +17,14 @@ export class VisualizaLeituraModalComponent implements OnInit {
 
   @Input() item: MedidorConsumo;
   leituras = new Array<Leitura>();
-  valorConsumo = new Array<ValorConsumo>();
+  valorConsumo = new Array<ValorMedidorConsumo>();
   isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador();
 
   constructor(private service: LeituraService, private md: ModalController) {
   }
 
-  static realizarCalculo(leituras: Array<Leitura>): Array<ValorConsumo>{
-    const valorConsumo = new Array<ValorConsumo>();
+  static realizarCalculo(leituras: Array<Leitura>): Array<ValorMedidorConsumo>{
+    const valorConsumo = new Array<ValorMedidorConsumo>();
 
     leituras.sort((a: Leitura, b: Leitura) => {
       if (a.dataleitura > b.dataleitura) { return 1; }
@@ -54,8 +54,8 @@ export class VisualizaLeituraModalComponent implements OnInit {
     return valorConsumo;
   }
 
-  static prepararCalculo(leituraAtual: Leitura, leituraAnterior: Leitura, total: number): ValorConsumo {
-    const valorConsumo = new ValorConsumo();
+  static prepararCalculo(leituraAtual: Leitura, leituraAnterior: Leitura, total: number): ValorMedidorConsumo {
+    const valorConsumo = new ValorMedidorConsumo();
 
     valorConsumo.numeroAtual = leituraAtual.numeroleitura;
     valorConsumo.numeroAnterior = leituraAnterior.numeroleitura;
@@ -66,12 +66,12 @@ export class VisualizaLeituraModalComponent implements OnInit {
     valorConsumo.medidor = leituraAtual.medidorConsumo;
     valorConsumo.quantidade = total;
 
-    if (leituraAtual.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
+    if (leituraAtual.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.LUZ) {
       valorConsumo.unidadeMedida = 'Kw';
-      valorConsumo.valor = new TipoMedidorConsumo().calculoLuz(total);
-    } else if (leituraAtual.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.AGUA) {
+      valorConsumo.valor = new CalculoMedidorUtil().calculoLuz(total);
+    } else if (leituraAtual.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.AGUA) {
       valorConsumo.unidadeMedida = 'M³';
-      valorConsumo.valor = new TipoMedidorConsumo().calculoAgua(total);
+      valorConsumo.valor = new CalculoMedidorUtil().calculoAgua(total);
     }
 
     return valorConsumo;

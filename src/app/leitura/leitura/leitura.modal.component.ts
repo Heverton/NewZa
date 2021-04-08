@@ -8,7 +8,6 @@ import { RelatorioService } from '../../shared/api/relatorio.service';
 import { UsuarioLogado } from '../../shared/auth/usuario-logado';
 import { Leitura } from '../leitura';
 import { MedidorConsumo } from '../medidor-consumo';
-import { ValorConsumo } from '../tipo-medidor-consumo';
 import { TipoMedidorEnum } from '../tipo-medidor-enum';
 import { VisualizaLeituraModalComponent } from '../visualiza-leitura-modal/visualiza-leitura-modal.component';
 
@@ -136,9 +135,9 @@ export class LeituraModalComponent implements OnInit {
     this.service.buscarIdMedidor(this.leitura.medidorConsumo.id).subscribe(result => {
       const valorConsumo = VisualizaLeituraModalComponent.realizarCalculo(result);
 
-      if (this.leitura.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.AGUA) {
+      if (this.leitura.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.AGUA) {
         this.relatorioService.inserirHeader('Relatório de leitura de Água');
-      } else if (this.leitura.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
+      } else if (this.leitura.medidorConsumo.ValorConsumo.id === TipoMedidorEnum.LUZ) {
         this.relatorioService.inserirHeader('Relatório de leitura de Energia');
       }
 
