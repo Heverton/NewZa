@@ -12,9 +12,12 @@
     <ion-item>
       <ion-button name="voltar"  color="primary" type="button" (click)="voltar()">Voltar</ion-button>
     </ion-item>
-    <ion-card *ngFor="let item of valorConsumo">
+    <ion-card *ngFor="let item of valoresConsumos">
         <ion-item>
             <ion-card-subtitle>Data da leitura: {{item.dataLeituraAtual | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+         </ion-item>
+          <ion-item>
+            <ion-card-subtitle>Número medido: {{item.numeroAtual}}</ion-card-subtitle>
          </ion-item>
          <ion-item>
             <ion-card-subtitle>Quantidade: {{item.quantidade}} {{item.unidadeMedida}}</ion-card-subtitle>
@@ -24,8 +27,10 @@
         </ion-item>
 
         <ion-item>
+          <!--
           <ion-button name="editar"  *ngIf="isAdministrador" color="primary" type="button" (click)="editar()">Editar</ion-button>
           <ion-button name="excluir" *ngIf="isAdministrador" color="primary" type="button" (click)="excluir">Excluir</ion-button>
+          -->
         </ion-item>
     </ion-card>
     </ion-infinite-scroll-content>

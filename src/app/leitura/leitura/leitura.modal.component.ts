@@ -50,8 +50,9 @@ export class LeituraModalComponent implements OnInit {
     this.preparDados();
 
     this.service.buscarUltimaLeitura(this.leitura.medidorConsumo.id).subscribe(result => {
-      if (result === null || this.leitura.dataleitura >= result.dataleitura && this.leitura.numeroleitura >= result.numeroleitura) {
-        this.service.inserir(this.leitura).subscribe(async result => {
+      if (result === null || new Date(this.leitura.dataleitura) >= new Date(result.dataleitura)
+        && this.leitura.numeroleitura >= result.numeroleitura) {
+        this.service.inserir(this.leitura).subscribe(async () => {
           this.action();
         }, err => {
           console.log('Erro', err);

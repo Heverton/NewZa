@@ -17,14 +17,14 @@ export class VisualizaLeituraModalComponent implements OnInit {
 
   @Input() item: MedidorConsumo;
   leituras = new Array<Leitura>();
-  valorConsumo = new Array<ValorMedidorConsumo>();
+  valoresConsumos = new Array<ValorMedidorConsumo>();
   isAdministrador = UsuarioLogado.getUsuarioLogadoPerfilAdministrador();
 
   constructor(private service: LeituraService, private md: ModalController) {
   }
 
   static realizarCalculo(leituras: Array<Leitura>): Array<ValorMedidorConsumo>{
-    const valorConsumo = new Array<ValorMedidorConsumo>();
+    const valoresConsumos = new Array<ValorMedidorConsumo>();
 
     leituras.sort((a: Leitura, b: Leitura) => {
       if (a.dataleitura > b.dataleitura) { return 1; }
@@ -41,17 +41,17 @@ export class VisualizaLeituraModalComponent implements OnInit {
         leituraAnterior = new Leitura();
         leituraAnterior.numeroleitura = 0;
         const total = leituraAtual.numeroleitura;
-        valorConsumo.push(this.prepararCalculo(leituraAtual, leituraAnterior, total));
+        valoresConsumos.push(this.prepararCalculo(leituraAtual, leituraAnterior, total));
       } else {
         const j = i - 1;
         leituraAnterior = leituras[j];
         leituraAtual = leituras[i];
         const total = leituraAtual.numeroleitura - leituraAnterior.numeroleitura;
-        valorConsumo.push(this.prepararCalculo(leituraAtual, leituraAnterior, total));
+        valoresConsumos.push(this.prepararCalculo(leituraAtual, leituraAnterior, total));
       }
     }
 
-    return valorConsumo;
+    return valoresConsumos;
   }
 
   static prepararCalculo(leituraAtual: Leitura, leituraAnterior: Leitura, total: number): ValorMedidorConsumo {
@@ -64,7 +64,7 @@ export class VisualizaLeituraModalComponent implements OnInit {
     valorConsumo.dataLeituraAnterir = leituraAnterior.dataleitura;
 
     valorConsumo.medidor = leituraAtual.medidorConsumo;
-    valorConsumo.quantidade = total;
+    valorConsumo.quantidade = (total <= 0 ) ? 0 : total;
 
     if (leituraAtual.medidorConsumo.tipoMedidorConsumo.id === TipoMedidorEnum.LUZ) {
       valorConsumo.unidadeMedida = 'Kw';
@@ -80,7 +80,14 @@ export class VisualizaLeituraModalComponent implements OnInit {
   ngOnInit(): void {
     this.service.buscarIdMedidor(this.item.id).subscribe(result => {
       this.leituras = result;
-      this.valorConsumo = VisualizaLeituraModalComponent.realizarCalculo(this.leituras);
+      this.valoresConsumos = VisualizaLeituraModalComponent.realizarCalculo(this.leituras);
+
+      this.valoresConsumos.sort((a: ValorMedidorConsumo, b: ValorMedidorConsumo) => {
+        if (a.dataLeituraAtual < b.dataLeituraAtual) { return 1; }
+        if (a.dataLeituraAtual > b.dataLeituraAtual) { return -1; }
+        return 0;
+      });
+
     });
   }
 
