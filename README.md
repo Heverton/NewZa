@@ -29,13 +29,32 @@ node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build
 
 https://stackoverflow.com/questions/39705491/error-source-path-does-not-exist-resources-android-icon-drawable-hdpi-icon-png
 
+------------------------
 Caso de erro:
 [ERROR] An error occurred while running subprocess cordova.
         cordova platform add android --save exited with exit code 1.
 
-Solução: rm platforms -R | cordova platform add ios
+Solução: sudo rm platforms -R | cordova platform add ios
 
-ionic cordova build android --prod --release --verbose --max_old_space_size=40960
+Solução 2:
+Removed android platform (ionic cordova platform remove android)
+Deleted node_modules folder
+Manually updated dependencies versions on package.json, according to the versions on the package.json from my blank project.
+Ran npm install
+Reinstalled android platform (ionic cordova platform add android)
+
+Solução 3: 
+npm cache clean --force
+npm install
+npm install --save-dev @angular-devkit/build-angular
+npm install --save-dev @angular-devkit/core
+https://github.com/angular/angular-cli/issues/16868
+
+TESTE
+npm run build
+------------------------
+
+ionic cordova build android --prod --release --verbose --max_old_space_size=40960 --verbose
 
 ng run app:ionic-cordova-build:production --platform=android
 
