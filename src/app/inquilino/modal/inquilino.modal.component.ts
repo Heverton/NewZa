@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
-import { Imovel } from 'src/app/imovel/imovel';
-import { Login } from 'src/app/login/login';
-import { EstadoCivilService } from 'src/app/shared/api/estadocivil.service';
-import { ImovelService } from 'src/app/shared/api/imovel.service';
-import { InquilinoService } from 'src/app/shared/api/inquilino.service';
-import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
+import { Imovel } from '../../imovel/imovel';
+import { Login } from '../../login/login';
+import { EstadoCivilService } from '../../shared/api/estadocivil.service';
+import { ImovelService } from '../../shared/api/imovel.service';
+import { InquilinoService } from '../../shared/api/inquilino.service';
+import { UsuarioLogado } from '../../shared/auth/usuario-logado';
 import { EstadoCivil } from '../estadocivil';
 import { Inquilino } from '../Inquilino';
 

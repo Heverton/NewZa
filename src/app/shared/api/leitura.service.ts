@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GenericService } from './generic.service';
-import { Leitura } from 'src/app/leitura/leitura';
+import { Leitura } from '../../leitura/leitura';
 import { Observable } from 'rxjs';
 
 @Injectable()

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
-import { AvisoService } from 'src/app/shared/api/aviso.service';
-import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
+import { AvisoService } from '../../shared/api/aviso.service';
+import { UsuarioLogado } from '../../shared/auth/usuario-logado';
 import { Aviso } from '../aviso';
 
 @Component({

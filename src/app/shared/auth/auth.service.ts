@@ -2,7 +2,7 @@ import { HttpBackend, HttpClient, HttpErrorResponse, HttpResponse } from '@angul
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Login } from 'src/app/login/login';
+import { Login } from '../../login/login';
 import { GenericService } from '../api/generic.service';
 import { MensagemComponente } from '../components/mensagem.component';
 import { JwtRequest } from './jwt-request';

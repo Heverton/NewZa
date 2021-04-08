@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
-import { MensagemComponente } from 'src/app/shared/components/mensagem.component';
+import { MensagemComponente } from '../../shared/components/mensagem.component';
 
 import { LeituraService } from '../../shared/api/leitura.service';
 import { RelatorioService } from '../../shared/api/relatorio.service';

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
-import { Imovel } from 'src/app/imovel/imovel';
-import { ImovelService } from 'src/app/shared/api/imovel.service';
-import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
+import { Imovel } from '../../imovel/imovel';
+import { ImovelService } from '../../shared/api/imovel.service';
+import { UsuarioLogado } from '../../shared/auth/usuario-logado';
 
 @Component({
   selector: 'app-imovel',

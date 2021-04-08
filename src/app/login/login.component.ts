@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/auth/auth.service';

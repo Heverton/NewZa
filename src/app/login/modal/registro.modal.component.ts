@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
-import { Inquilino } from 'src/app/inquilino/Inquilino';
-import { InquilinoService } from 'src/app/shared/api/inquilino.service';
-import { LoginService } from 'src/app/shared/api/login.service';
-import { MensagemComponente } from 'src/app/shared/components/mensagem.component';
+import { Inquilino } from '../../inquilino/Inquilino';
+import { InquilinoService } from '../../shared/api/inquilino.service';
+import { LoginService } from '../../shared/api/login.service';
+import { MensagemComponente } from '../../shared/components/mensagem.component';
 import { Login } from '../login';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { LeituraService } from 'src/app/shared/api/leitura.service';
-import { UsuarioLogado } from 'src/app/shared/auth/usuario-logado';
+import { LeituraService } from '../../shared/api/leitura.service';
+import { UsuarioLogado } from '../../shared/auth/usuario-logado';
 import { CalculoMedidorUtil } from '../calculo-medidor-util';
 import { Leitura } from '../leitura';
 import { MedidorConsumo } from '../medidor-consumo';

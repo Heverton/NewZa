@@ -12,23 +12,32 @@ https://ionicons.com/
 # https://ionicframework.com/docs/angular/your-first-app/6-deploying-mobile
 # Pré
 
-altere a versão do config.xml e packge.json
-
-rm www -R | ionic build www | ionic cap add android --verbose | ionic cap copy | ionic cap open android
-
 https://ionicframework.com/docs/cli/commands/capacitor-run
 https://ionicframework.com/docs/cli/livereload
 https://ionicframework.com/docs/angular/your-first-app/6-deploying-mobile
 https://stackoverflow.com/questions/59531305/call-retries-were-exceeded-exception-while-ng-build
-node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build
 
+
+altere a versão do config.xml e packge.json
+
+rm www -R | ionic build www | ionic cap add android --verbose | ionic cap copy | ionic cap open android
+
+node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build
 # Ciclo de Geração (as vezes é preciso remover a pasta platforms)
 
 # altere a versão do config.xml e packge.json
-rm platforms -R | ionic cordova build android --prod --release --verbose --max_old_space_size=40960
-    ng run app:ionic-cordova-build:production --platform=android
 
 https://stackoverflow.com/questions/39705491/error-source-path-does-not-exist-resources-android-icon-drawable-hdpi-icon-png
+
+Caso de erro:
+[ERROR] An error occurred while running subprocess cordova.
+        cordova platform add android --save exited with exit code 1.
+
+Solução: rm platforms -R | cordova platform add ios
+
+ionic cordova build android --prod --release --verbose --max_old_space_size=40960
+
+ng run app:ionic-cordova-build:production --platform=android
 
 # Assinar versão do APK
 cp /home/heverton/Projetos/NewZaWorkspace/newza-frontend/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk /home/heverton/Projetos/NewZaWorkspace/newza-backend/src/main/resources/release

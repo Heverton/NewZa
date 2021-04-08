@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Inquilino } from 'src/app/inquilino/Inquilino';
+import { Inquilino } from '../../inquilino/Inquilino';
 import { GenericService } from './generic.service';
 import { Observable } from 'rxjs';
 
